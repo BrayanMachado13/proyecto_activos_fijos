@@ -10,8 +10,8 @@
  JOIN activos_fijos af ON ae.id_activo = af.num_placa_activo 
  JOIN solicitudes_transferencia st ON ae.id_solicitud = st.id
  LEFT JOIN usuarios usu ON st.usuario_origen = usu.identificacion
- LEFT JOIN destino ds ON af.fk_desti_id = ds.desti_id
- LEFT JOIN ubicacion ub ON af.fk_ubica_id = ub.ubica_id
+ LEFT JOIN destino ds ON ae.destino_inicial = ds.desti_id
+ LEFT JOIN ubicacion ub ON ae.ubicacion_inicial = ub.ubica_id
  LEFT JOIN ubicacion ubi ON st.ubicacion = ubi.ubica_id
  LEFT JOIN estadotraslado et ON ae.estado = et.id
  LEFT JOIN producto pr ON af.nombre_producto = pr.id

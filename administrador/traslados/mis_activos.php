@@ -96,7 +96,7 @@ $resultado = $conexion->query($sql);
                     </form>
                 </div>
 
-                <div class="activos" id="myDIV">
+                <div class="activos" id="mis_activos">
                     <a style="text-decoration: none;" href="">
                         <div class="active clearfix" id="clearf" data-toggle="tooltip"
                             title="Clic para mas información de este punto de venta">
