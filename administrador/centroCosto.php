@@ -14,15 +14,15 @@ include_once "../database/db.php";
     <title>Document</title>
 
     <script>
-        function generarPDF() {
-            // Llamar a generar_pdf.php para generar el PDF
-            window.open('pdf/PDFCentrocosto.php', '_blank');
-        }
+    function generarPDF() {
+        // Llamar a generar_pdf.php para generar el PDF
+        window.open('pdf/PDFCentrocosto.php', '_blank');
+    }
     </script>
 
 </head>
 
-<body style="background-image: url(../complemento/imagen/fondoweb.jpg);">
+<body>
 
     <?php 
     include('header.php'); 
@@ -61,9 +61,9 @@ include_once "../database/db.php";
                 <button onclick="generarPDF()" class="btn third">Generar Reporte</button>
                 <button id="btn-generar-excel">Generar Excel</button>
                 <script>
-                    document.getElementById('btn-generar-excel').addEventListener('click', function () {
-                        window.location.href = 'excel/EXCELCentrocosto.php';
-                    });
+                document.getElementById('btn-generar-excel').addEventListener('click', function() {
+                    window.location.href = 'excel/EXCELCentrocosto.php';
+                });
                 </script>
                 <table class="bigtables table  table-striped table-hover">
                     <tbody>
@@ -133,7 +133,7 @@ include_once "../database/db.php";
     </div>
     <nav aria-label="...">
         <ul class="pagination justify-content-center mt-2">
-        <?php 
+            <?php 
             include_once 'paginacion/paginacion.php';
         ?>
         </ul>

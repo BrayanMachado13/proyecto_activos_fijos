@@ -34,7 +34,7 @@ include_once "../database/db.php";
         }
     ?>
 
-    <br>    
+    <br>
     <div class="container">
         <!-- Stack the columns on mobile by making one full-width and the other half-width -->
         <nav class="navbar navsep navbar-expand-sm navbar-rednav bg-rednav rounded">
@@ -43,7 +43,8 @@ include_once "../database/db.php";
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <i>
-                                <a class="nav-item nav-link bi bi-plus-square-dotted" href="pantallas/crear_provedor.php"> Nuevo proveedor</a>
+                                <a class="nav-item nav-link bi bi-plus-square-dotted"
+                                    href="pantallas/crear_provedor.php"> Nuevo proveedor</a>
                             </i>
                         </li>
                     </ul>
@@ -81,7 +82,7 @@ include_once "../database/db.php";
                             LEFT JOIN estado es ON pv.estado = es.id ";
                             $result=mysqli_query($conexion,$sql);
                             while($mostrar=mysqli_fetch_array($result)){
-                            ?>
+                        ?>
                         <tr>
                             <td><?php echo $mostrar['idprovedor']?></td>
                             <td><?php echo $mostrar['nombre_provedor']?></td>

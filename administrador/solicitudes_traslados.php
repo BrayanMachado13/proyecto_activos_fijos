@@ -1,6 +1,20 @@
 <?php
 include_once "usuarios/nombre_usuarios.php";
 include_once "../database/db.php";
+
+
+$sql = "SELECT st.id, usu.nombre_usuario AS nombre_usuario_solicitante, usua.nombre_usuario AS nombre_usuario_destino, 
+    cc.nombre_centrocosto AS nombre_centrocosto, ds.nombre_destino AS nombre_destino, ub.nombre_ubicacion AS nombre_ubicacion
+    FROM solicitudes_transferencia st
+    LEFT JOIN usuarios usu ON st.usuario_origen = usu.identificacion
+    LEFT JOIN usuarios usua ON st.usuario_destino = usua.identificacion
+    LEFT JOIN centrocosto cc ON st.centro_costo = cc.idcentrocosto
+    LEFT JOIN destino ds ON st.destino = ds.desti_id
+    LEFT JOIN ubicacion ub ON st.ubicacion = ub.ubica_id";
+    $result = $conexion->query($sql);
+
+                           
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,6 +23,7 @@ include_once "../database/db.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/activos.css">
     <title>Document</title>
 </head>
@@ -27,14 +42,13 @@ include_once "../database/db.php";
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <i>
-                                <a class="nav-item nav-link bi bi-plus-square-dotted" href="/soliciteds/new"> Nueva
+                                <a class="nav-item nav-link bi bi-plus-square-dotted" href="traslados/solicitudes.php">
+                                    Nueva
                                     Solicitud</a>
                             </i>
                         </li>
                     </ul>
                     <form class="d-flex">
-
-
                         <input placeholder="Busca la solicitud acá" onchange="this.form.requestSubmit()" type="text"
                             name="query_text" id="query_text">
                         <button class="btn btn-secondary" type="button">Buscar</button>
@@ -62,75 +76,47 @@ include_once "../database/db.php";
                             <th scope="col">NUEVA UBICACIÓN</th>
                             <th scope="col">ACCIONES</th>
                         </tr>
+                        <?php 
+                            while ($mostrar = mysqli_fetch_array($result)) {
+                        ?>
                         <tr>
                             <td>
-                                110
+                                <?php echo $mostrar['id']?>
                             </td>
                             <td>
-                                YADY LUZ GARCIA
+                                <?php echo $mostrar['nombre_usuario_solicitante']?>
                             </td>
                             <td>
-                                EMIRO DAVID RODRIGUEZ PERZ
+                                <?php echo $mostrar['nombre_usuario_destino']?>
                             </td>
                             <td>
-                                DORADO
+                                <?php echo $mostrar['nombre_centrocosto']?>
                             </td>
                             <td>
-                                S77 PILOTO DORADO
+                                <?php echo $mostrar['nombre_destino']?>
                             </td>
                             <td>
-                                S77 PILOTO DORADO
+                                <?php echo $mostrar['nombre_ubicacion']?>
                             </td>
 
                             <td>
                                 <i class="separar">
-                                    <a class="bi bi-eye-fill text-dark btn" href="/soliciteds/110"></a>
-                                    <form class="button_to" method="post" action="/soliciteds/110"><input type="hidden"
-                                            name="_method" value="delete" autocomplete="off"><button
-                                            class="bi bi-trash  text-dark btn" data-turbo-confirm="Estás seguro?"
-                                            type="submit"></button><input type="hidden" name="authenticity_token"
+                                    <a class="bi bi-eye-fill text-dark btn" href=""></a>
+                                    <form class="button_to" method="post" action=""><input type="hidden" name="_method"
+                                            value="delete" autocomplete="off"><button class="bi bi-trash  text-dark btn"
+                                            data-turbo-confirm="Estás seguro?" type="submit"></button><input
+                                            type="hidden" name="authenticity_token"
                                             value="6FxIRY4lovc1Px_4lHKuC63pYK2kWeUyKfyqsbDSCD_u90XaSjZaYZx4H890rgsFcYwmzasWeYij4jisZsQqgA"
                                             autocomplete="off"></form>
-                                    <a title="Editar" class=" bi bi-pencil-fill  text-dark btn"
-                                        href="/soliciteds/110/edit"></a>
+                                    <a title="Editar" class=" bi bi-pencil-fill  text-dark btn" href=""></a>
                                 </i>
                             </td>
                         </tr>
+                        <?php 
+                            }
+                        ?>
                     </tbody>
                 </table>
-                <nav aria-label="...">
-                    <ul class="pagination justify-content-center mt-2">
-                        <li class="page-item disabled">
-                            <span class="page-link text-dark">Anterior</span>
-                        </li>
-
-                        <li class="page-item text-dark bg-rednav text-white">
-                            <span class="page-link text-dark bg-rednav text-white">1</span>
-                        </li>
-                        <li class="page-item text-dark">
-                            <a class="page-link text-dark" href="/soliciteds?page=2">2</a>
-                        </li>
-                        <li class="page-item text-dark">
-                            <a class="page-link text-dark" href="/soliciteds?page=3">3</a>
-                        </li>
-                        <li class="page-item text-dark">
-                            <a class="page-link text-dark" href="/soliciteds?page=4">4</a>
-                        </li>
-                        <li class="page-item text-dark">
-                            <a class="page-link text-dark" href="/soliciteds?page=5">5</a>
-                        </li>
-                        <li class="page-item text-dark bg-rednav text-white">
-                            <span class="page-link text-dark bg-rednav text-white">gap</span>
-                        </li>
-                        <li class="page-item text-dark">
-                            <a class="page-link text-dark" href="/soliciteds?page=1568">1568</a>
-                        </li>
-
-                        <li class="page-item text-dark">
-                            <a class="page-link text-dark" href="/soliciteds?page=2">Siguiente</a>
-                        </li>
-                    </ul>
-                </nav>
             </div>
         </div>
     </div>

@@ -317,3 +317,7 @@ thead, tbody, tfoot, tr, td, th {
 .collapse:not(.show) {
     display: none;
 }
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}

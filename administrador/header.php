@@ -10,8 +10,6 @@
 </head>
 
 <body>
-
-
     <nav class="sep navbar navbar-expand-sm bg-rednav navbar">
         <div class="container-fluid">
             <a class="navbar-brand" href="principal_admin.php">
@@ -69,7 +67,8 @@
                                     Solicitudes</a>
                             </li>
                             <li>
-                                <a class="dropdown-item text-dark " href="">Ir a Aceptaciones</a>
+                                <a class="dropdown-item text-dark " href="asignaciones_de_activos.php">Ir a asignaciones
+                                    de activos</a>
                             </li>
                             <li>
                                 <a class="dropdown-item text-dark " href="roles.php">Ir a Roles</a>
