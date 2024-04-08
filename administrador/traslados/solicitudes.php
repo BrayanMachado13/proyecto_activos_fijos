@@ -52,7 +52,7 @@
     <title>Document</title>
 </head>
 
-<body style="background-image: url(../../complemento/imagen/fondoweb.jpg); font-family: sans-serif ;">
+<body>
 
     <?php 
     include('../pantallas/header_pantallas.php'); 

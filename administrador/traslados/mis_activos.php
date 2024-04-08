@@ -21,12 +21,23 @@ $resultado = $conexion->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/activos.css">
     <script src="https://unpkg.com/slim-select@latest/dist/slimselect.min.js"></script>
     <link href="https://unpkg.com/slim-select@latest/dist/slimselect.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     </link>
+    <link rel="stylesheet" href="../../css/activos.css">
     <title>Document</title>
+    <style>
+    .active-nombre {
+        margin-bottom: 1px; /* Ajusta el valor según sea necesario */
+        display: block; /* Mostrar como bloque para ocupar toda la anchura */
+        padding: 5px;
+    }
+    .table-striped tbody tr {
+        border-bottom: 15px solid transparent !important; /* Color y grosor del borde */
+    }
+   
+</style>
 </head>
 
 <body>
@@ -105,13 +116,12 @@ $resultado = $conexion->query($sql);
                                 <table class="table  table-striped table-hover text-dark">
                                     <tbody>
                                         <?php while ($fila = $resultado->fetch_assoc()): ?>
-                                        <tr>
+                                        <tr class="table-active">
                                             <td>
                                                 <span class="active-nombre text-dark">
                                                     <b>PLACA:</b> <?php echo $fila["num_placa_activo"]; ?>,
                                                     <b>NOMBRE:</b> </b> <?php echo $fila["nombre_producto"]; ?>,
                                                     <b>TIPO DE ACTIVO:</b> <?php echo $fila["nombre_jerarquiactivo"]; ?>
-                                                    ,
                                                     <b>UBICACION:</b>
                                                     <?php echo $fila["nombre_ubicacion"]; ?>
                                                 </span>

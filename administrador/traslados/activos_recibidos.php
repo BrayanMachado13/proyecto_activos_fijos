@@ -103,14 +103,7 @@
                     <td><?= $row['nombre_producto'] ?></td>
                     <td><?= $row['nombre_jerarquiactivo'] ?></td>
                     <td>
-                        <?php if ($row['estado'] != 1 && $row['estado'] != 2): ?>
-                        <form action="procesos/aceptar_rechazar_activos.php" method="post">
-                            <input type="hidden" name="id_activo" value="<?= $row['id_activo'] ?>">
-                            <input type="hidden" name="id_solicitud" value="<?= $row['id'] ?>">
-                            <input type="submit" name="aceptar" value="Aceptar">
-                            <input type="submit" name="rechazar" value="Rechazar">
-                        </form>
-                        <?php endif; ?>
+                        <a class="bi bi-eye-fill btn text-dark" href="aceptar_o_rechazar_activos.php?id_solicitud=<?= $row['id'] ?>&id_activo=<?= $row['id_activo'] ?>"></a>  
                     </td>
                 </tr>
                 <?php endwhile; ?>
