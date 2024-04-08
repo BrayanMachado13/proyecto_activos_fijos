@@ -66,10 +66,12 @@
                                 <a class="dropdown-item text-dark " href="../usuarios.php">Ir a Usuarios</a>
                             </li>
                             <li>
-                                <a class="dropdown-item text-dark " href="">Ir a Solicitudes</a>
+                                <a class="dropdown-item text-dark " href="../solicitudes_traslados.php">Ir a
+                                    Solicitudes</a>
                             </li>
                             <li>
-                                <a class="dropdown-item text-dark " href="">Ir a Aceptaciones</a>
+                                <a class="dropdown-item text-dark " href="../asignaciones_de_activos.php">Ir a
+                                    Asignacion de Activos</a>
                             </li>
                             <li>
                                 <a class="dropdown-item text-dark " href="../roles.php">Ir a Roles</a>
@@ -81,7 +83,7 @@
                                 <a class="dropdown-item text-dark " href="../provedor.php">Ir a proveedores</a>
                             </li>
                             <li>
-                                <a class="dropdown-item text-dark " href="">Ir a Marcas</a>
+                                <a class="dropdown-item text-dark " href="../marcas.php">Ir a Marcas</a>
                             </li>
                         </ul>
 
@@ -123,10 +125,9 @@
                     </a>
                     <ul class="dropdown-menu">
                         <a class="dropdown-item text-dark " href="viewPerfil.php">Perfil</a>
-                        <button class="dropdown-item text-dark " onclick="cerrarSesion()">cerrar sesion</a>
+                        <a class="dropdown-item text-dark " href="../../cerrar_sesion.php">cerrar sesion</a>
 
                     </ul>
-                    <script src="../cerrar_sesion.js"></script>
                 </li>
             </ul>
         </div>

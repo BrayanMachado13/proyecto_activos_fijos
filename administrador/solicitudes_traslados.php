@@ -26,6 +26,13 @@ $sql = "SELECT st.id, usu.nombre_usuario AS nombre_usuario_solicitante, usua.nom
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/activos.css">
     <title>Document</title>
+
+    <script>
+    function generarPDF() {
+        // Llamar a generar_pdf.php para generar el PDF
+        window.open('pdf/PDFsolicitudes.php', '_blank');
+    }
+    </script>
 </head>
 
 <body>
@@ -50,13 +57,13 @@ $sql = "SELECT st.id, usu.nombre_usuario AS nombre_usuario_solicitante, usua.nom
                     </ul>
                     <form class="d-flex">
                         <input placeholder="Busca la solicitud acá" onchange="this.form.requestSubmit()" type="text"
-                            name="query_text" id="query_text">
+                            name="search" id="search">
                         <button class="btn btn-secondary" type="button">Buscar</button>
                     </form>
                 </div>
             </div>
         </nav>
-
+        <button onclick="generarPDF()" class="btn third">Generar Reporte</button>
 
         <div class="row">
             <div class="col-md-8">
@@ -76,6 +83,7 @@ $sql = "SELECT st.id, usu.nombre_usuario AS nombre_usuario_solicitante, usua.nom
                             <th scope="col">NUEVA UBICACIÓN</th>
                             <th scope="col">ACCIONES</th>
                         </tr>
+
                         <?php 
                             while ($mostrar = mysqli_fetch_array($result)) {
                         ?>

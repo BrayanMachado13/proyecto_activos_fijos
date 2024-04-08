@@ -100,7 +100,7 @@
                                     <a class="dropdown-item text-dark " href="viewPerfil.php">Mi perfil</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item text-dark" href="traslados/activos_recibidos.php">Mis
+                                    <a class="dropdown-item text-dark" href="traslados/mis_activos.php">Mis
                                         activos</a>
                                 </li>
                                 <li>
@@ -108,7 +108,8 @@
                                         solicitudes</a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item text-dark" href="">Recibir activos</a>
+                                    <a class="dropdown-item text-dark" href="traslados/activos_recibidos.php">Recibir
+                                        activos</a>
                                 </li>
                             </ul>
                         </li>

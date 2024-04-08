@@ -52,7 +52,7 @@
     <title>Document</title>
 </head>
 
-<body style="background-image: url(../../complemento/imagen/fondoweb.jpg);">
+<body style="background-image: url(../../complemento/imagen/fondoweb.jpg); font-family: sans-serif ;">
 
     <?php 
     include('../pantallas/header_pantallas.php'); 
@@ -277,70 +277,73 @@
                         </div>
                     </form>
                 </div>
+            </div>
+        </div>
+    </div>
 
-                <div class="col-md-8">
-                    <div class="tzona">
-                        <h5>SOLICITUDES DE TRASLADO</h5>
-                    </div>
-                    <?php if (!empty($solicitudes)): ?>
-                    <table id="solicited-table" class="bigtable table table-striped table-hover">
-                        <thead class="text-dark">
-                            <tr>
-                                <th>ESTADO?</th>
-                                <th>FECHA</th>
-                                <th>SOLICITANTE</th>
-                                <th>DESTINATARIO</th>
-                                <th>C. COSTO</th>
-                                <th>NUEVO DESTINO</th>
-                                <th>NUEVA UBICACIÓN</th>
-                                <th>ACTIVOS ASOCIADOS</th>
-                                <th>ACCIONES</th>
-                            </tr>
-                        </thead>
+    <div class="row mt-2">
+        <div class="col-md-8">
+            <div class="tzona">
+                <h5>SOLICITUDES DE TRASLADO</h5>
+            </div>
+            <?php if (!empty($solicitudes)): ?>
+            <table id="solicited-table" class="bigtable table table-striped table-hover">
+                <thead class="text-dark">
+                    <tr>
+                        <th>ESTADO?</th>
+                        <th>FECHA</th>
+                        <th>SOLICITANTE</th>
+                        <th>DESTINATARIO</th>
+                        <th>C. COSTO</th>
+                        <th>NUEVO DESTINO</th>
+                        <th>NUEVA UBICACIÓN</th>
+                        <th>ACTIVOS ASOCIADOS</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
 
-                        <tbody id="soliciteds">
-                            <?php foreach ($solicitudes as $solicitud): ?>
-                            <tr>
-                                <td>
-                                    <?php if ($solicitud['estado'] == 1): ?>
-                                    <i class="bi bi-hand-thumbs-up-fill" style="color:#109d34;" aria-hidden="true"></i>
-                                    <?php elseif ($solicitud['estado'] == 2): ?>
-                                    <i class="bi bi-hand-thumbs-down-fill" style="color:#d63410;"
-                                        aria-hidden="true"></i>
-                                    <?php elseif ($solicitud['estado'] == 3): ?>
-                                    <i class="bi bi-clock" style="color:#0051FF;" aria-hidden="true"></i>
-                                    <?php endif; ?>
-                                    <?= $solicitud['nombre_estado']; ?>
-                                </td>
-                                <td><?= $solicitud['fecha_solicitud']; ?></td>
-                                <td>
-                                    <?= $solicitud['nombre_usuario_origen']; ?>
-                                </td>
-                                <td>
-                                    <?= $solicitud['nombre_usuario_destino']; ?>
-                                </td>
-                                <td>
-                                    <?= $solicitud['centro_costo']; ?>
-                                </td>
-                                <td><?= $solicitud['destino']; ?></td>
-                                <td>
-                                    <?= $solicitud['ubicacion']; ?>
-                                </td>
-                                <td class="active-barcode">
-                                    <?= $solicitud['activos_enviados']; ?>
-                                </td>
-                                <td>
-                                    <i class="separar">
-                                        <a class="bi bi-eye-fill text-dark btn"
-                                            href="asignacion_activos.php?id_solicitud=<?= $solicitud['id']; ?>&nombre_solicitante=<?= $solicitud['usuario_origen']; ?>"></a>
-                                    </i>
-                                </td>
-                            </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                    <?php endif; ?>
-                </div>
+                <tbody id="soliciteds">
+                    <?php foreach ($solicitudes as $solicitud): ?>
+                    <tr>
+                        <td>
+                            <?php if ($solicitud['estado'] == 1): ?>
+                            <i class="bi bi-hand-thumbs-up-fill" style="color:#109d34;" aria-hidden="true"></i>
+                            <?php elseif ($solicitud['estado'] == 2): ?>
+                            <i class="bi bi-hand-thumbs-down-fill" style="color:#d63410;" aria-hidden="true"></i>
+                            <?php elseif ($solicitud['estado'] == 3): ?>
+                            <i class="bi bi-clock" style="color:#0051FF;" aria-hidden="true"></i>
+                            <?php endif; ?>
+                        </td>
+                        <td><?= $solicitud['fecha_solicitud']; ?></td>
+                        <td>
+                            <?= $solicitud['nombre_usuario_origen']; ?>
+                        </td>
+                        <td>
+                            <?= $solicitud['nombre_usuario_destino']; ?>
+                        </td>
+                        <td>
+                            <?= $solicitud['centro_costo']; ?>
+                        </td>
+                        <td><?= $solicitud['destino']; ?></td>
+                        <td>
+                            <?= $solicitud['ubicacion']; ?>
+                        </td>
+                        <td class="active-barcode">
+                            <?= $solicitud['activos_enviados']; ?>
+                        </td>
+                        <td>
+                            <i class="separar">
+                                <a class="bi bi-eye-fill text-dark btn"
+                                    href="asignacion_activos.php?id_solicitud=<?= $solicitud['id']; ?>&nombre_solicitante=<?= $solicitud['usuario_origen']; ?>"></a>
+                            </i>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            <?php endif; ?>
+        </div>
+    </div>
 </body>
 
 </html>

@@ -255,6 +255,12 @@ foreach ($data as $row) {
             $pdf->MultiCell(20 - ($padding * 2), $cuadroHeight - ($padding * 4), $row_db['nombre_usuario'], 0, 'L');
             
             $y += $cuadroHeight + $margin;
+
+             // Verificar si es necesario cambiar de página
+             if ($y > 270) { // Ajustar este valor según el espacio disponible en la segunda página
+                $pdf->AddPage();
+                $y = 10; // Reiniciar la posición y en la nueva página
+            }
         }
     }
 }

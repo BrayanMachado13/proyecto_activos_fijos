@@ -23,7 +23,6 @@ $sql = "SELECT aso.id,
 
 $result = $conexion->query($sql);
 
-    $conexion->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,6 +34,13 @@ $result = $conexion->query($sql);
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../css/activos.css">
     <title>Document</title>
+
+    <script>
+    function generarPDF() {
+        // Llamar a generar_pdf.php para generar el PDF
+        window.open('pdf/PDFAsignacionActivos.php', '_blank');
+    }
+    </script>
 </head>
 
 <body>
@@ -52,7 +58,8 @@ $result = $conexion->query($sql);
                         <div>
                             <a class="btn third" data-method="get" href="">Reporte Asignaciones De Activos en
                                 csv</a>
-                            <a class="btn third" href="">Reporte Asignaciones De Activos en PDF</a>
+                            <button onclick="generarPDF()" class="btn third">Reporte Asignaciones De Activos en
+                                PDF</button>
                         </div>
                     </ul>
                     <form class="d-flex">
@@ -60,7 +67,7 @@ $result = $conexion->query($sql);
                         <div class="form-group">
                             <label class="text-white" for="plate_filter"># placa</label>
                             <input class="form-control" onchange="this.form.requestSubmit()"
-                                placeholder="Ingrese la placa" type="text" name="plate" id="plate">
+                                placeholder="Ingrese la placa" type="text" name="search" id="search">
                         </div>
 
                         <div class="form-group">
@@ -75,7 +82,6 @@ $result = $conexion->query($sql);
                         <div class="form-group mt-4">
                             <input type="submit" name="commit" value="Buscar" class="btn btn-secondary"
                                 onclick="this.form.submit()" data-disable-with="Buscar">
-
                         </div>
                     </form>
                 </div>
@@ -99,6 +105,9 @@ $result = $conexion->query($sql);
                 </tr>
             </thead>
             <tbody>
+                <?php 
+                    include_once 'busquedas/buscarAsignacionActivos.php';
+                ?>
                 <?php while($row = $result->fetch_assoc()): ?>
                 <tr>
                     <td><?= $row['id'] ?></td>
