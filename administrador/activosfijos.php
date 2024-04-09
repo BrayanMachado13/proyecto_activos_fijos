@@ -48,7 +48,7 @@ include_once "../database/db.php";
     </script>
 </head>
 
-<body style="background-image: url(../complemento/imagen/fondoweb.jpg);">
+<body>
 
     <?php 
     include('header.php'); 
@@ -143,16 +143,15 @@ include_once "../database/db.php";
                                     <td>
                                         <i class="separar">
 
-                                            <a class="bi bi-eye-fill text-dark btn" href=""></a>
+                                            <a class="bi bi-eye-fill text-dark btn"
+                                                href="visualizacion/visualizarActivo.php?id=<?php echo $mostrar['activo_fijo']?>"></a>
                                             <form class="button_to" method="post" action=""><input type="hidden"
                                                     name="_method" value="patch" autocomplete="off"><button
                                                     title="Dar de baja" class="text-dark bi bi-arrow-down btn"
-                                                    type="submit"></button><input type="hidden"
-                                                    name="authenticity_token"
-                                                    value="wDGal4aJPjOixBl8j04X6cjmh2U8l03LfHztt-LWDYbxFTL-H1N63WJyppESOy0ycypOMrAygBngrypRzXZnpA"
-                                                    autocomplete="off"></form>
+                                                    type="submit"></button>
+                                            </form>
                                             <a title="Editar" class=" bi bi-pencil-fill text-dark btn"
-                                                href="modificar/modificarActivos.php?id=<?php echo isset($mostrar['id'])?> "></a>
+                                                href="modificar/modificarActivos.php?id=<?php echo isset($mostrar['activo_fijo'])?>"></a>
                                         </i>
                                     </td>
                                 </tr>

@@ -13,14 +13,14 @@ include_once "../database/db.php";
     <title>Document</title>
 
     <script>
-        function generarPDF() {
-            // Llamar a generar_pdf.php para generar el PDF
-            window.open('pdf/PDFPuntoVenta.php', '_blank');
-        }
+    function generarPDF() {
+        // Llamar a generar_pdf.php para generar el PDF
+        window.open('pdf/PDFPuntoVenta.php', '_blank');
+    }
     </script>
 </head>
 
-<body style="background-image: url(../complemento/imagen/fondoweb.jpg);">
+<body>
 
     <?php 
     include('header.php'); 
@@ -39,7 +39,7 @@ include_once "../database/db.php";
         }
     ?>
 
-    <br>    
+    <br>
     <div class="container">
         <!-- Stack the columns on mobile by making one full-width and the other half-width -->
         <nav class="navbar navsep navbar-expand-sm navbar-rednav bg-rednav rounded">
@@ -48,14 +48,15 @@ include_once "../database/db.php";
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <i>
-                                <a class="nav-item nav-link bi bi-plus-square-dotted" href="pantallas/crear_destino.php"> Nueva Destino</a>
+                                <a class="nav-item nav-link bi bi-plus-square-dotted"
+                                    href="pantallas/crear_destino.php"> Nueva Destino</a>
                             </i>
                         </li>
                     </ul>
-                    
+
                     <form class="d-flex" method="GET">
-                        <input placeholder="Busca el Destino acá" onchange="this.form.requestSubmit()" type="text" value=""
-                            name="search" id="search">
+                        <input placeholder="Busca el Destino acá" onchange="this.form.requestSubmit()" type="text"
+                            value="" name="search" id="search">
                         <input class="btn btn-secondary" id="searchButton" type="button" value="buscar">
                     </form>
                 </div>
@@ -66,9 +67,9 @@ include_once "../database/db.php";
 
         <div class="row">
             <div class="col-md-8">
-                    <div class="tzona">
-                        <h3>DESTINOS</h3>
-                    </div>
+                <div class="tzona">
+                    <h3>DESTINOS</h3>
+                </div>
                 <div id="ccosto">
                 </div>
                 <table class="bigtables table  table-striped table-hover ">
@@ -82,16 +83,16 @@ include_once "../database/db.php";
                             <th>CIUDAD</th>
                             <th>ACCIONES</th>
                         </tr>
-                        
+
                         <?php 
                         include_once 'busquedas/buscarDestinos.php';
                         ?>
-                        
+
                         <?php 
                         while ($mostrar = mysqli_fetch_array($result)) {
                         ?>
                         <tr>
-                            
+
                             <td><?php echo $mostrar['desti_id']?></td>
                             <td><?php echo $mostrar['nombre_destino']?></td>
                             <td><?php echo $mostrar['nombre_centrocosto']?></td>
@@ -124,24 +125,18 @@ include_once "../database/db.php";
                         ?>
                     </tbody>
                 </table>
-                
+
                 <nav aria-label="...">
-                <ul class="pagination justify-content-center mt-2">
-                <?php 
+                    <ul class="pagination justify-content-center mt-2">
+                        <?php 
                     include_once 'paginacion/paginacion.php';
-                ?>        
-                </ul>
+                ?>
+                    </ul>
                 </nav>
-                
+
             </div>
         </div>
-    </div>                       
+    </div>
 </body>
 
 </html>
-
-
-
-
-
-

@@ -5,7 +5,8 @@
  $sql = "SELECT pr.nombre_producto AS nombre_producto, ae.estado, et.nombre AS nombre_estado, ae.id_activo, st.id,
  usu.nombre_usuario AS usuario_destino, st.centro_costo, st.destino, ubi.nombre_ubicacion AS nombre_ubicacion_final, 
  st.fecha_solicitud, ds.nombre_destino AS nombre_destino_inicial, ub.nombre_ubicacion AS nombre_ubicacion_inicial, 
- af.serial_activo, jr.nombre_jerarquiactivo AS nombre_jerarquiactivo 
+ af.serial_activo, jr.nombre_jerarquiactivo AS nombre_jerarquiactivo, st.usuario_destino, st.destino, st.ubicacion, jr.idjerarquiactivo, 
+ af.fk_idmarcas, af.nombre_producto AS idproducto
  FROM activos_solicitud ae 
  JOIN activos_fijos af ON ae.id_activo = af.num_placa_activo 
  JOIN solicitudes_transferencia st ON ae.id_solicitud = st.id
@@ -103,14 +104,10 @@
                     <td><?= $row['nombre_producto'] ?></td>
                     <td><?= $row['nombre_jerarquiactivo'] ?></td>
                     <td>
-                        <?php if ($row['estado'] != 1 && $row['estado'] != 2): ?>
-                        <form action="procesos/aceptar_rechazar_activos.php" method="post">
-                            <input type="hidden" name="id_activo" value="<?= $row['id_activo'] ?>">
-                            <input type="hidden" name="id_solicitud" value="<?= $row['id'] ?>">
-                            <input type="submit" name="aceptar" value="Aceptar">
-                            <input type="submit" name="rechazar" value="Rechazar">
-                        </form>
-                        <?php endif; ?>
+                        <a class="bi bi-eye-fill btn text-dark"
+                            href="aceptar_o_rechazar_activos.php?id_solicitud=<?= $row['id'] ?>&id_activo=<?= $row['id_activo'] ?>
+                            &usuario_destino=<?= $row['usuario_destino'] ?>&destino=<?= $row['destino'] ?>&ubicacion=<?= $row['ubicacion'] ?>
+                            &tipoactivo=<?= $row['idjerarquiactivo'] ?>&marca=<?= $row['fk_idmarcas'] ?>&producto=<?= $row['idproducto'] ?>"></a>
                     </td>
                 </tr>
                 <?php endwhile; ?>

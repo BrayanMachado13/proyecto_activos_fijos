@@ -54,7 +54,7 @@
                             </li>
                             <a class="dropdown-item text-dark" href="activosfijos.php">Ir a Activos</a>
                             <li>
-                                <a class="dropdown-item text-dark " href="">Ir a Tipos de Activo</a>
+                                <a class="dropdown-item text-dark " href="tipoactivos.php">Ir a Tipos de Activo</a>
                             </li>
                             <li>
                                 <a class="dropdown-item text-dark " href="">Ir a jerarquias Activo</a>

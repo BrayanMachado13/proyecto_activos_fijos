@@ -32,7 +32,7 @@
     }
                         
     // Construye la consulta SQL para la búsqueda
-    $sql = "SELECT ac.id, ac.num_placa_activo AS activo_fijo , cc.nombre_centrocosto AS nombre_centrocosto, pr.nombre_producto AS nombre_producto,
+    $sql = "SELECT ac.id, ac.num_placa_activo AS activo_fijo, cc.nombre_centrocosto AS nombre_centrocosto, pr.nombre_producto AS nombre_producto,
     usu.nombre_usuario AS nombre_usuario, es.nombre AS nombre_estado 
     FROM activos_fijos ac
     LEFT JOIN centrocosto cc ON ac.fk_idcentrocosto = cc.idcentrocosto

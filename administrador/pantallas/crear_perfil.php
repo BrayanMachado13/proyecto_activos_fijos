@@ -18,7 +18,7 @@
     <title>Document</title>
 </head>
 
-<body style="background-image: url(../../complemento/imagen/fondoweb.jpg);">
+<body>
 
     <?php 
     include('header_pantallas.php'); 
@@ -29,8 +29,7 @@
         <div class="container tam-card-personal" style="height: 70%;width: 70%;">
             <div class="row">
                 <div class="col md-8">
-                    <div class="bg-card-personal card  text-white"
-                        style="background: linear-gradient(0deg, rgb(7 22 22 / 30%) 0%, rgba(45,115,253,0.1) 100%); width: 50%;">
+                    <div class="bg-card-personal card  text-white">
                         <div class="card-body ">
                             <h2 class="card-title"></h2>
                             <div class="row">

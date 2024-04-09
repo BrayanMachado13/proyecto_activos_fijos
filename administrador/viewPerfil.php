@@ -13,7 +13,7 @@ include_once "usuarios/nombre_usuarios.php";
     <title>Document</title>
 </head>
 
-<body style="background-image: url(../complemento/imagen/fondoweb.jpg);">
+<body>
 
     <?php 
     include('header.php'); 
