@@ -10,7 +10,7 @@
     <title>Document</title>
 </head>
 
-<body style="background-image: url(../recursos/fondoweb.jpg);">
+<body>
 
     <?php 
     include('../header2.php'); 

@@ -148,16 +148,15 @@ $result = mysqli_query($conexion, $sql);
                                 <i>
                                     <ul class="separar d-flex">
                                         <li>
-                                            <form class="button_to" method="post" action="/actives/27530"><input
-                                                    type="hidden" name="_method" value="delete"
-                                                    autocomplete="off"><button title="Eliminar" class="bi bi-trash btn"
+                                            <form class="button_to" method="post" action=""><input type="hidden"
+                                                    name="_method" value="delete" autocomplete="off"><button
+                                                    title="Eliminar" class="bi bi-trash btn"
                                                     type="submit"></button><input type="hidden"
                                                     name="authenticity_token"
                                                     value="7ylXddZvS6hTD6PE4T7cXUn-qvA3D5OJ1mmEdGI0R-Pyve4gpmk5DMFe2nXYkWx65i4aPJnXE4iodV65oDWOWw"
                                                     autocomplete="off"></form>
                                         </li>
-                                        <li><a title="Editar" class=" bi bi-pencil-fill btn"
-                                                href="/actives/27530/edit"></a></li>
+                                        <li><a title="Editar" class=" bi bi-pencil-fill btn" href=""></a></li>
                                         <li>
                                         </li>
                                         <li><button onclick="window.history.back()"
