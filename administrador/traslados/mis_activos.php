@@ -37,7 +37,7 @@ $resultado = $conexion->query($sql);
     }
 
     .table-striped tbody tr {
-        border-bottom: 10px solid transparent !important;
+        border-bottom: 15px solid transparent !important;
         /* Color y grosor del borde */
     }
     </style>
@@ -111,16 +111,14 @@ $resultado = $conexion->query($sql);
                 </div>
 
                 <div class="activos" id="mis_activos">
-                    <?php while ($fila = $resultado->fetch_assoc()): ?>
-                    <a style="text-decoration: none;"
-                        href="../visualizacion/visualizarActivo.php?id=<?php echo $fila["num_placa_activo"]; ?>">
+                    <a style="text-decoration: none;" href="">
                         <div class="active clearfix" id="clearf" data-toggle="tooltip"
                             title="Clic para mas información de este punto de venta">
                             <div class="active-details">
                                 <?php if ($resultado->num_rows > 0): ?>
                                 <table class="table  table-striped table-hover text-dark">
                                     <tbody>
-
+                                        <?php while ($fila = $resultado->fetch_assoc()): ?>
                                         <tr class="table-active">
                                             <td>
                                                 <span class="active-nombre text-dark">
@@ -132,15 +130,16 @@ $resultado = $conexion->query($sql);
                                                 </span>
                                             </td>
                                         </tr>
-
+                                        <?php endwhile; ?>
                                     </tbody>
                                 </table>
                                 <?php else: ?>
                                 <p>No se encontraron activos fijos asociados al usuario.</p>
                                 <?php endif; ?>
+
+                                <?php $conexion->close(); ?>
                             </div>
                         </div>
-                        <?php endwhile; ?>
                 </div>
 
 

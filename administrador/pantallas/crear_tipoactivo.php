@@ -68,36 +68,35 @@ $mysqli->close();
     <?php 
     include('header_pantallas.php'); 
     ?>
-
-    <br>
-    <div class="container tam-card-personal">
-        <div class="row">
-            <div class="col md-8">
-                <div class="bg-card-personal card  text-white">
-                    <div class="card-body ">
-                        <h2 class="card-title"></h2>
-                        <div class="row">
-                            <div class="col text-dark">
-                                <h3 class="card-title "> REGISTRAR NUEVO TIPO DE ACTIVO</h3>
-                                <p class="text-center">A continuación digita los datos del tipo activo</p>
-                                <div class="centrarcard">
-                                    <form action="../php/keepTipoActivo.php" method="post">
-                                        <div class="mb-3" style="text-align: center;">
-                                            <label for="tipoactivo" class="form-label">ID TIPO ACTIVO</label>
-                                            <input type="text" class="form-control" id="tipoactivo" name="tipoactivo">
-                                        </div>
-                                        <div class="mb-3" style="text-align: center;">
-                                            <label for="decripcionactivo" class="form-label">DESCRIPCION</label>
-                                            <input type="text" class="form-control" id="decripcionactivo"
-                                                name="decripcionactivo">
-                                        </div>
-                                        <center>
+    <center>
+        <div class="container tam-card-personal">
+            <div class="row">
+                <div class="col md-8">
+                    <div class="bg-card-personal card  text-white">
+                        <div class="card-body ">
+                            <h2 class="card-title"></h2>
+                            <div class="row">
+                                <div class="col text-dark">
+                                    <h3 class="card-title "> REGISTRAR NUEVO TIPO DE ACTIVO</h3>
+                                    <p class="text-center">A continuación digita los datos del tipo activo</p>
+                                    <div class="centrarcard">
+                                        <form action="../php/keepTipoActivo.php" method="post">
+                                            <div class="mb-3">
+                                                <label for="tipoactivo" class="form-label">ID TIPO ACTIVO</label>
+                                                <input type="text" class="form-control" id="tipoactivo"
+                                                    name="tipoactivo">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="decripcionactivo" class="form-label">DESCRIPCION</label>
+                                                <input type="text" class="form-control" id="decripcionactivo"
+                                                    name="decripcionactivo">
+                                            </div>
                                             <button type="submit"
                                                 class="bi bi-database-fill-add text-dark btn"></button>
                                             <a class="bi bi-skip-backward-btn-fill text-dark btn"
                                                 title="Retornar a los tipos de activo" href="../tipoactivos.php"></a>
-                                        </center>
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -105,7 +104,7 @@ $mysqli->close();
                 </div>
             </div>
         </div>
-    </div>
+    </center>
 </body>
 
 </html>

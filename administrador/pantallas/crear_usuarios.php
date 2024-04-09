@@ -29,7 +29,7 @@
     <title>Document</title>
 </head>
 
-<body>
+<body style="background-image: url(../../complemento/imagen/fondoweb.jpg);">
 
     <?php 
     include('header_pantallas.php'); 
@@ -37,10 +37,11 @@
 
     <br>
     <center>
-        <div class="container tam-card-personal" style="height: 70%;width: 40%;">
+        <div class="container tam-card-personal" style="height: 70%;width: 70%;">
             <div class="row">
                 <div class="col md-8">
-                    <div class="bg-card-personal card  text-white">
+                    <div class="bg-card-personal card  text-white"
+                        style="background: linear-gradient(0deg, rgb(7 22 22 / 30%) 0%, rgba(45,115,253,0.1) 100%); width: 50%;">
                         <div class="card-body ">
                             <h2 class="card-title"></h2>
                             <div class="row">
@@ -72,10 +73,10 @@
                                                 <select class="form-select" aria-label="Default select example"
                                                     name="rol" id="rol">
                                                     <?php
-                                                    while ($fila = $resultado_roles->fetch_assoc()) {
-                                                        echo '<option value="' . $fila['idroles'] . '">' . $fila['nom_rol'] . '</option>';
-                                                    }
-                                                    ?>
+                                while ($fila = $resultado_roles->fetch_assoc()) {
+                                    echo '<option value="' . $fila['idroles'] . '">' . $fila['nom_rol'] . '</option>';
+                                }
+                                ?>
                                                 </select>
                                             </div>
                                             <div class="mb-3">
@@ -83,10 +84,10 @@
                                                 <select class="form-select" aria-label="Default select example"
                                                     name="zona" id="zona">
                                                     <?php
-                                                    while ($fila = $resultado_zona->fetch_assoc()) {
-                                                        echo '<option value="' . $fila['idzona'] . '">' . $fila['nombre_zona'] . '</option>';
-                                                    }
-                                                    ?>
+                                while ($fila = $resultado_zona->fetch_assoc()) {
+                                    echo '<option value="' . $fila['idzona'] . '">' . $fila['nombre_zona'] . '</option>';
+                                }
+                                ?>
                                                 </select>
                                             </div>
 
@@ -95,10 +96,10 @@
                                                 <select class="form-select" aria-label="Default select example"
                                                     name="estado" id="estado">
                                                     <?php
-                                                    while ($fila = $resultado_estado->fetch_assoc()) {
-                                                        echo '<option value="' . $fila['id'] . '">' . $fila['nombre'] . '</option>';
-                                                    }
-                                                    ?>
+                                while ($fila = $resultado_estado->fetch_assoc()) {
+                                    echo '<option value="' . $fila['id'] . '">' . $fila['nombre'] . '</option>';
+                                }
+                                ?>
                                                 </select>
                                             </div>
 
@@ -116,8 +117,6 @@
             </div>
         </div>
     </center>
-    <br>
-    <br>
 </body>
 
 </html>

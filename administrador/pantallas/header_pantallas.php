@@ -80,7 +80,7 @@
                                 <a class="dropdown-item text-dark " href="">Ir a Estados de traslado</a>
                             </li>
                             <li>
-                                <a class="dropdown-item text-dark " href="../proveedor.php">Ir a proveedores</a>
+                                <a class="dropdown-item text-dark " href="../provedor.php">Ir a proveedores</a>
                             </li>
                             <li>
                                 <a class="dropdown-item text-dark " href="../marcas.php">Ir a Marcas</a>
@@ -124,7 +124,7 @@
                         <?php echo $n_usuario; ?>
                     </a>
                     <ul class="dropdown-menu">
-                        <a class="dropdown-item text-dark " href="../viewPerfil.php">Perfil</a>
+                        <a class="dropdown-item text-dark " href="viewPerfil.php">Perfil</a>
                         <a class="dropdown-item text-dark " href="../../cerrar_sesion.php">cerrar sesion</a>
 
                     </ul>

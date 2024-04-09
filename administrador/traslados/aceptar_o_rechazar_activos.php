@@ -4,12 +4,6 @@ include_once "../usuarios/nombre_usuarios.php";
 
 $id_solicitud = $_GET['id_solicitud'];
 $id_activo = $_GET['id_activo'];
-$usuario_destino = $_GET['usuario_destino'];
-$destino = $_GET['destino'];
-$ubicacion = $_GET['ubicacion'];
-$tipo_activos = $_GET['tipoactivo'];
-$id_marca = $_GET['marca'];
-$producto = $_GET['producto'];
 
 // Consulta para obtener los detalles del activo en la tabla activos_solicitud
 $sql_activo = "SELECT * FROM activos_solicitud WHERE id_solicitud = $id_solicitud AND id_activo = $id_activo";
@@ -18,14 +12,6 @@ $result_activo = $conexion->query($sql_activo);
 // Consulta para obtener los detalles del activo en la tabla activos_fijos
 $sql_activo_fijo = "SELECT * FROM activos_fijos WHERE num_placa_activo = $id_activo";
 $result_activo_fijo = $conexion->query($sql_activo_fijo);
-
-// Consulta para obtener los detalles del activo en la tabla activos_fijos
-$sql_marca = "SELECT * FROM marca WHERE idmarcas = $id_marca";
-$result_marca = $conexion->query($sql_marca);
-
-//consulta para obtener el tipo del activo
-$sql_tipoactivo = "SELECT * FROM jerarquiactivo WHERE idjerarquiactivo = $tipo_activos";
-$result_tipoactivo = $conexion->query($sql_tipoactivo);
 
 // Consulta para obtener el nombre del responsable
 $sql_responsable = "SELECT nombre_usuario FROM usuarios WHERE identificacion = $usuario_destino";
@@ -39,32 +25,35 @@ $result_destino = $conexion->query($sql_destino);
 $sql_ubicacion = "SELECT nombre_ubicacion FROM ubicacion WHERE ubica_id = $ubicacion";
 $result_ubicacion = $conexion->query($sql_ubicacion);
 
-// Consulta para obtener el nombre del producto
-$sql_producto = "SELECT * FROM producto WHERE id = $producto";
-$result_producto = $conexion->query($sql_producto);
-
 // Verificar si se encontraron los activos
 if ($result_activo->num_rows > 0 && $result_activo_fijo->num_rows > 0) {
     $row_activo = $result_activo->fetch_assoc();
     $row_activo_fijo = $result_activo_fijo->fetch_assoc();
-    $row_destino = $result_destino->fetch_assoc();
-    $row_ubicacion = $result_ubicacion->fetch_assoc();
-    $row_usuario_destino = $result_responsable->fetch_assoc();
-    $row_jerarquiactivo = $result_tipoactivo->fetch_assoc();
-    $row_marca = $result_marca->fetch_assoc();
-    $row_producto = $result_producto->fetch_assoc();
-    $serial_activo = $row_activo_fijo['serial_activo'];
-    $nombre_usuario_destino = $row_usuario_destino['nombre_usuario'];
-    $nombre_destino = $row_destino['nombre_destino'];
-    $nombre_ubicacion = $row_ubicacion['nombre_ubicacion'];
-    $nombre_jerarquiactivo =  $row_jerarquiactivo['nombre_jerarquiactivo'];
-    $nombre_marca = $row_marca['nombre_marca'];
-    $nombre_producto = $row_producto['nombre_producto'];
-   
-    if ($row_activo['estado'] != 1 && $row_activo['estado'] != 2) {
-        $mostrar_botones = true;
-    } else {
-        $mostrar_botones = false;
+    $nombre_producto = $row_activo_fijo['nombre_producto'];
+    $usuario_destino = $row_activo['id_usuario_destino'];
+    $destino = $row_activo['destino'];
+    $ubicacion = $row_activo['ubicacion'];
+    // Continuar con los demás campos que quieras mostrar
+
+    // Obtener el nombre del responsable
+    $nombre_responsable = "";
+    if ($result_responsable->num_rows > 0) {
+        $row_responsable = $result_responsable->fetch_assoc();
+        $nombre_responsable = $row_responsable['nombre_usuario'];
+    }
+
+    // Obtener el nombre del destino
+    $nombre_destino = "";
+    if ($result_destino->num_rows > 0) {
+        $row_destino = $result_destino->fetch_assoc();
+        $nombre_destino = $row_destino['nombre_destino'];
+    }
+
+    // Obtener el nombre de la ubicación
+    $nombre_ubicacion = "";
+    if ($result_ubicacion->num_rows > 0) {
+        $row_ubicacion = $result_ubicacion->fetch_assoc();
+        $nombre_ubicacion = $row_ubicacion['nombre_ubicacion'];
     }
 } else {
     echo "No se encontraron detalles para el activo recibido.";
@@ -87,11 +76,6 @@ $conexion->close();
 
 <body>
 
-    <?php 
-    include('../pantallas/header_pantallas.php'); 
-    ?>
-
-    <br>
     <div class="container tam-card-personal">
         <div class="row">
             <div class="col md-8">
@@ -115,10 +99,11 @@ $conexion->close();
                                                 <td>
                                                     <div class="badge text-dark text-wrap font-monospace">
                                                         PLACA: <?= $id_activo ?> <br>
-                                                        NOMBRE:<?= $nombre_producto ?> <br>
-                                                        TIPO: <?= $nombre_jerarquiactivo ?><br>
-                                                        SERIAL: <?= $serial_activo ?><br>
-                                                        MARCA: <?= $nombre_marca ?>
+                                                        NOMBRE:
+                                                        <?= $nombre_producto ?> <br>
+                                                        TIPO: ACTIVO FIJO<br>
+                                                        SERIAL: 26C'24RG'1A00517<br>
+                                                        MARCA: SMART POST
                                                     </div>
                                                 </td>
                                             </tr>
@@ -131,20 +116,25 @@ $conexion->close();
                                             <tr>
                                                 <th>NOMBRE DEL RESPONSABLE</th>
                                                 <td>
-                                                    <?= $usuario_destino ?> -
-                                                    <?= $nombre_usuario_destino ?></td>
+                                                    MARTA MARIA MACIAS</td>
                                             </tr>
                                             <tr>
                                                 <th>DESTINO</th>
                                                 <td>
-                                                    <?= $destino ?> -
-                                                    <?= $nombre_destino ?>
+                                                    3576 -
+                                                    EDIFICIO RECORD MONTERIA
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th>UBICACIÓN</th>
-                                                <td> <?= $ubicacion ?> -
-                                                    <?= $nombre_ubicacion ?>
+                                                <td>56 -
+                                                    TALLER DE SISTEMAS
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>SUBRESPONSABLE ASIGNADO</th>
+                                                <td><?= $usuario_destino ?> -
+                                                    BRAYAN MACHADO
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -154,19 +144,19 @@ $conexion->close();
                                     <ul class="separar d-flex">
                                         <li><button onclick="window.history.back()"
                                                 class="bi bi-skip-backward-btn-fill text-dark btn"> Atrás</button></li>
-
+                                        <?php if ($row['estado'] != 1 && $row['estado'] != 2): ?>
                                         <form class="button_to" method="post"
                                             action="procesos/aceptar_rechazar_activos.php">
                                             <input type="hidden" name="id_activo" value="<?= $id_activo ?>">
                                             <input type="hidden" name="id_solicitud" value="<?= $id_solicitud ?>">
-                                            <?php if ($mostrar_botones): ?>
-                                            <input type="submit" name="aceptar"
+                                            <input type="button" name="aceptar"
                                                 class="bi bi-check-circle-fill text-success btn" value="Aceptar activo">
-                                            <input type="submit" name="rechazar"
+                                            <input type="button" name="rechazar"
                                                 class="bi bi-x-circle-fill text-danger btn" data-bs-toggle="modal"
                                                 data-bs-target="#exampleModal" value="Rechazar">
-                                            <?php endif; ?>
                                         </form>
+                                        <?php endif; ?>
+
                                     </ul>
                                 </i>
                             </div>

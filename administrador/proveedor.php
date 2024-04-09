@@ -15,7 +15,7 @@ include_once "../database/db.php";
     <title>Document</title>
 </head>
 
-<body>
+<body style="background-image: url(../complemento/imagen/fondoweb.jpg);">
 
     <?php 
     include('header.php'); 

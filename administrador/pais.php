@@ -15,7 +15,7 @@ include_once "../database/db.php";
     <title>Document</title>
 </head>
 
-<body>
+<body style="background-image: url(../complemento/imagen/fondoweb.jpg);">
 
     <?php 
     include('header.php'); 
@@ -43,8 +43,7 @@ include_once "../database/db.php";
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <i>
-                                <a class="nav-item nav-link bi bi-plus-square-dotted" href="pantallas/crear_pais.php">
-                                    Nuevo pais</a>
+                                <a class="nav-item nav-link bi bi-plus-square-dotted" href="pantallas/crear_pais.php"> Nuevo pais</a>
                             </i>
                         </li>
                     </ul>
@@ -61,9 +60,11 @@ include_once "../database/db.php";
 
         <div class="row">
             <div class="col-md-8">
-                <div class="tzona">
-                    <h3>PAISES</h3>
-                </div>
+                <center>
+                    <div class="tzona">
+                        <h3>PAISES</h3>
+                    </div>
+                </center>
                 <div id="pais">
                 </div>
                 <table class="bigtables table  table-striped table-hover ">
@@ -73,7 +74,7 @@ include_once "../database/db.php";
                             <th>NOMBRE</th>
                             <th>ACCIONES</th>
                         </tr>
-
+                        
                         <?php 
                         include_once 'busquedas/buscarPais.php';
                         ?>
@@ -115,9 +116,9 @@ include_once "../database/db.php";
     </div>
     <nav aria-label="...">
         <ul class="pagination justify-content-center mt-2">
-            <?php 
+        <?php 
             include_once 'paginacion/paginacion.php';
-            ?>
+        ?>
         </ul>
     </nav>
 </body>

@@ -34,10 +34,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-    <script src="https://unpkg.com/slim-select@latest/dist/slimselect.min.js">
-    </script>
-    <link href="https://unpkg.com/slim-select@latest/dist/slimselect.css" rel="stylesheet">
-    </link>
     <link rel="stylesheet" href="../../css/activos.css">
     <title>Document</title>
 </head>
@@ -52,8 +48,10 @@
     <div class="container tam-card-personal">
         <div class="row">
             <div class="col md-8">
-                <div class="bg-card-personal card  text-white">
-                    <div class="card-body">
+                <div class="bg-card-personal card  text-white"
+                    style="background: linear-gradient(0deg, rgb(28 28 28 / 30%) 0%, rgb(0 0 0 / 10%) 100%);">
+                    <div class="card-body "
+                        style="background: linear-gradient(0deg, rgb(28 28 28 / 30%) 0%, rgb(0 0 0 / 10%) 100%);">
                         <h2 class="card-title"></h2>
                         <div class="row">
                             <div class="col text-dark">
@@ -68,7 +66,8 @@
                                             autocomplete="off">
                                         <div class="container">
                                             <!--Se agrega campo para asignarle manualmente el ID a cada registro-->
-                                            <div class="form-control bg-card-personal">
+                                            <div class="form-control bg-card-personal"
+                                                style="background: linear-gradient(0deg, rgb(28 28 28 / 30%) 0%, rgb(0 0 0 / 10%) 100%);">
                                                 <div class="row row-cols-4">
                                                     <div class="col">
                                                         <div class="mb-3">
@@ -82,10 +81,11 @@
                                                             </div>
                                                             <div class="mb-3">
                                                                 <div class="form-group">
-                                                                    <label class="form-label" style="display: block"
-                                                                        for="">Nombre del
+                                                                    <label class="form-label  " style="display: block"
+                                                                        for="nombre_activo">Nombre del
                                                                         activo</label>
-                                                                    <select class=" border border-info rounded-2"
+                                                                    <select
+                                                                        class="form-select border border-info rounded-2" 
                                                                         name="nombre_activo" id="nombre_activo">
                                                                         <?php
                                                                         while ($fila = $resultado_producto->fetch_assoc()) {
@@ -94,11 +94,6 @@
                                                                         ?>
                                                                     </select>
                                                                 </div>
-                                                                <script>
-                                                                new SlimSelect({
-                                                                    select: '#nombre_activo'
-                                                                })
-                                                                </script>
                                                             </div>
                                                             <div class="">
                                                                 <div class="form-group">
@@ -131,7 +126,8 @@
                                                         <div class="">
                                                             <div class="form-group">
                                                                 <label class="form-label">Estado?</label>
-                                                                <select class="form-select border border-info rounded-2"
+                                                                <select
+                                                                    class="form-select border border-info rounded-2"
                                                                     name="estado" id="estado">
                                                                     <?php
                                                                         while ($fila = $resultado_estado->fetch_assoc()) {
@@ -145,7 +141,8 @@
                                                             <div class="form-group">
                                                                 <label class="form-label">Es Activo fijo o
                                                                     inventario?</label>
-                                                                <select class="form-select border border-info rounded-2"
+                                                                <select
+                                                                    class="form-select border border-info rounded-2"
                                                                     name="jerarquia_activo" id="jerarquia_activo">
                                                                     <?php
                                                                         while ($fila = $resultado_jerarquiactivo->fetch_assoc()) {
@@ -168,7 +165,8 @@
                                                             <div class="mb-3">
                                                                 <div class="form-group">
                                                                     <label class="form-label">Responsable </label>
-                                                                    <select class=" border border-info rounded-2"
+                                                                    <select
+                                                                        class="form-select border border-info rounded-2"
                                                                         name="usuario_activo" id="usuario_activo">
                                                                         <?php
                                                                         while ($fila = $resultado_usuarios->fetch_assoc()) {
@@ -177,11 +175,6 @@
                                                                         ?>
                                                                     </select>
                                                                 </div>
-                                                                <script>
-                                                                new SlimSelect({
-                                                                    select: '#usuario_activo'
-                                                                })
-                                                                </script>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -191,7 +184,8 @@
                                                                 <label class="form-label " style="display: block"
                                                                     for="provedor_activo">Selecciona el
                                                                     proveedor</label>
-                                                                <select class=" border border-info rounded-2"
+                                                                <select
+                                                                    class="form-select border border-info rounded-2"
                                                                     name="provedor_activo" id="provedor_activo">
                                                                     <?php
                                                                         while ($fila = $resultado_provedor->fetch_assoc()) {
@@ -200,18 +194,14 @@
                                                                         ?>
                                                                 </select>
                                                             </div>
-                                                            <script>
-                                                            new SlimSelect({
-                                                                select: '#provedor_activo'
-                                                            })
-                                                            </script>
                                                         </div>
                                                         <div class="mb-3">
                                                             <div id="centers">
                                                                 <label class="form-label  " style="display: block"
                                                                     for="centrocosto">Centros de
                                                                     costo:</label>
-                                                                <select class=" border border-info rounded-2"
+                                                                <select
+                                                                    class="form-select border border-info rounded-2"
                                                                     name="centrocosto" id="centrocosto">
                                                                     <?php
                                                                     while ($fila = $resultado_centrocosto->fetch_assoc()) {
@@ -220,18 +210,14 @@
                                                                     ?>
                                                                 </select>
                                                             </div>
-                                                            <script>
-                                                            new SlimSelect({
-                                                                select: '#centrocosto'
-                                                            })
-                                                            </script>
                                                         </div>
                                                         <div class="mb-3">
                                                             <div id="centers">
                                                                 <label class="form-label  " style="display: block"
                                                                     for="destinos">Definir
                                                                     Destino:</label>
-                                                                <select class="form-select border border-info rounded-2"
+                                                                <select
+                                                                    class="form-select border border-info rounded-2"
                                                                     name="destinos" id="destinos">
 
                                                                 </select>
@@ -242,7 +228,8 @@
                                                                 <label class="form-label  " style="display: block"
                                                                     for="ubicaciones">Definir
                                                                     ubicacion:</label>
-                                                                <select class="form-select border border-info rounded-2"
+                                                                <select
+                                                                    class="form-select border border-info rounded-2"
                                                                     name="ubicaciones" id="ubicaciones">
 
                                                                 </select>
@@ -434,8 +421,6 @@
                 </div>
             </div>
         </div>
-        <br>
-        <br>
 </body>
 
 </html>

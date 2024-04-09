@@ -15,7 +15,7 @@ include_once "../database/db.php";
     <title>Document</title>
 </head>
 
-<body>
+<body style="background-image: url(../complemento/imagen/fondoweb.jpg);">
 
     <?php 
     include('header.php'); 
@@ -34,7 +34,7 @@ include_once "../database/db.php";
         }
     ?>
 
-    <br>
+    <br>    
     <div class="container">
         <!-- Stack the columns on mobile by making one full-width and the other half-width -->
         <nav class="navbar navsep navbar-expand-sm navbar-rednav bg-rednav rounded">
@@ -43,8 +43,7 @@ include_once "../database/db.php";
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <i>
-                                <a class="nav-item nav-link bi bi-plus-square-dotted"
-                                    href="pantallas/crear_departamentos.php"> Nuevo Departamento</a>
+                                <a class="nav-item nav-link bi bi-plus-square-dotted" href="pantallas/crear_departamentos.php"> Nuevo Departamento</a>
                             </i>
                         </li>
                     </ul>
@@ -76,7 +75,7 @@ include_once "../database/db.php";
                             <th>PAIS</th>
                             <th>ACCIONES</th>
                         </tr>
-
+                        
                         <?php 
                         include_once 'busquedas/buscarDepartamentos.php';
                         ?>
@@ -119,7 +118,7 @@ include_once "../database/db.php";
     </div>
     <nav aria-label="...">
         <ul class="pagination justify-content-center mt-2">
-            <?php 
+        <?php 
             include_once 'paginacion/paginacion.php';
         ?>
         </ul>
