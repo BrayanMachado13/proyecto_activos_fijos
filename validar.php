@@ -27,7 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['idpersona'] = $row['idpersona'];
         $_SESSION['usuario'] = $row['usuario'];
         $_SESSION['rol'] = $row['rol'];
-        $_SESSION['nombre_usuario'] = $row['nombre_usuario'];
+        $_SESSION['nombres'] = $row['nombres'];
+        $_SESSION['apellidos'] = $row['apellidos'];
         $_SESSION['identificacion'] = $row['identificacion'];
         $_SESSION['fk_idzona'] = $row['fk_idzona'];
 

@@ -8,7 +8,8 @@ $success_msg = "";
 // Verificar si se envió el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST['id'];
-    $nombre = $_POST['nombre'];
+    $nombres = $_POST['nombres'];
+    $apellidos = $_POST['apellidos'];
     $correo = $_POST['correo'];
     $contraseña = $_POST['password'];
     $rol = $_POST['rol'];
@@ -20,10 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $conexion->query($sql);
 
     if ($result->num_rows > 0) {
-        $error_msg = "Ya existe un registro con el mismo ID. No se puede guardar.";
+        $error_msg = "Ya existe un usuario con la misma cedula. No se puede guardar.";
     } else {
         // Insertar los datos en la base de datos
-        $sql = "INSERT INTO usuarios (identificacion, nombre_usuario, usuario, password, rol, fk_idzona, estado) VALUES ($id, '$nombre', '$correo', '$contraseña', '$rol', '$zona', '$estado')";
+        $sql = "INSERT INTO usuarios (identificacion, nombres, apellidos, usuario, password, rol, fk_idzona, estado) VALUES ($id, '$nombres', '$apellidos', '$correo', '$contraseña', '$rol', '$zona', '$estado')";
         if ($conexion->query($sql) === TRUE) {
             $success_msg = "USUARIO guardado correctamente.";
         } else {

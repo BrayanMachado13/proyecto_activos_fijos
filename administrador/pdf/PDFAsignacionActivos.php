@@ -18,7 +18,7 @@ if ($conn->connect_error) {
 // Consulta a la base de datos
 $sql = 'SELECT aso.id, 
 st.usuario_destino AS usuario_destino, 
-usu.nombre_usuario AS nombre_usuario, 
+usu.nombres AS nombre_usuario, 
 st.fecha_solicitud AS fecha_solicitud, 
 dn.nombre_destino AS destino_inicial, 
 ub.nombre_ubicacion AS ubicacion_inicial, 

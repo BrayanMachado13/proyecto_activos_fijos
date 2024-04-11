@@ -33,7 +33,7 @@
                         
     // Construye la consulta SQL para la búsqueda
     $sql = "SELECT ac.id, ac.num_placa_activo AS activo_fijo, cc.nombre_centrocosto AS nombre_centrocosto, pr.nombre_producto AS nombre_producto,
-    usu.nombre_usuario AS nombre_usuario, es.nombre AS nombre_estado 
+    usu.nombres AS nombre_usuario, es.nombre AS nombre_estado 
     FROM activos_fijos ac
     LEFT JOIN centrocosto cc ON ac.fk_idcentrocosto = cc.idcentrocosto
     LEFT JOIN producto pr ON ac.nombre_producto = pr.id
@@ -43,7 +43,7 @@
     UNION  
     
     SELECT inv.id, inv.num_placa_inventario AS activo_fijo , cc.nombre_centrocosto AS nombre_centrocosto, pr.nombre_producto AS nombre_producto,
-    usu.nombre_usuario AS nombre_usuario, es.nombre AS nombre_estado 
+    usu.nombres AS nombre_usuario, es.nombre AS nombre_estado 
     FROM inventarios inv
     LEFT JOIN centrocosto cc ON inv.fk_idcentrocosto = cc.idcentrocosto
     LEFT JOIN producto pr ON inv.nombre_producto = pr.id

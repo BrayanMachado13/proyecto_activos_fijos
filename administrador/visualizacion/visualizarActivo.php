@@ -6,7 +6,7 @@ $id = $_GET["id"];
 
 // Consulta para obtener los detalles del dato
 $sql = "SELECT ac.id, ac.serial_activo, ac.num_placa_activo AS activo_fijo, ac.activofijo_repuesto, tp.nombre_tipoactivos AS nombre_tipo_activos, ac.fk_cedula, jr.nombre_jerarquiactivo AS nombre_jerarquia, pr.nombre_producto AS nombre_producto,
-usu.nombre_usuario AS nombre_usuario, es.nombre AS nombre_estado, ds.nombre_destino AS nombre_destino, ub.nombre_ubicacion AS nombre_ubicacion, ac.fk_idprovedor, prov.nombre_provedor AS nombre_provedor, ac.precio_activo, ac.fecha_activo
+usu.nombres AS nombre_usuario, es.nombre AS nombre_estado, ds.nombre_destino AS nombre_destino, ub.nombre_ubicacion AS nombre_ubicacion, ac.fk_idprovedor, prov.nombre_provedor AS nombre_provedor, ac.precio_activo, ac.fecha_activo
 FROM activos_fijos ac
 LEFT JOIN producto pr ON ac.nombre_producto = pr.id
 LEFT JOIN usuarios usu ON ac.fk_cedula = usu.identificacion
@@ -21,7 +21,7 @@ WHERE num_placa_activo = $id
 UNION  
 
 SELECT inv.id, inv.serial_inventario, inv.num_placa_inventario AS activo_fijo , inv.activofijo_asociado, tp.nombre_tipoactivos AS nombre_tipo_activos, inv.fk_cedula, jr.nombre_jerarquiactivo AS nombre_jerarquia, pr.nombre_producto AS nombre_producto,
-usu.nombre_usuario AS nombre_usuario, es.nombre AS nombre_estado, ds.nombre_destino AS nombre_destino, ub.nombre_ubicacion AS nombre_ubicacion, inv.fk_idprovedor, prov.nombre_provedor AS nombre_provedor, inv.precio_activo, inv.fecha_inventario
+usu.nombres AS nombre_usuario, es.nombre AS nombre_estado, ds.nombre_destino AS nombre_destino, ub.nombre_ubicacion AS nombre_ubicacion, inv.fk_idprovedor, prov.nombre_provedor AS nombre_provedor, inv.precio_activo, inv.fecha_inventario
 FROM inventarios inv
 LEFT JOIN producto pr ON inv.nombre_producto = pr.id
 LEFT JOIN usuarios usu ON inv.fk_cedula = usu.identificacion

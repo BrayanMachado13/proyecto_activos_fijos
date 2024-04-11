@@ -43,7 +43,7 @@
                                                 </tr>
                                                 <tr>
                                                     <th>Nombre:</th>
-                                                    <td><?php echo $n_usuario; ?></td>
+                                                    <td><?php echo $n_usuario; ?> <?php echo $apellidos; ?></td>
                                                 </tr>
                                                 <tr>
                                                     <th>Rol</th>

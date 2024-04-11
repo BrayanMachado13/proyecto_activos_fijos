@@ -84,12 +84,13 @@ $mysqli->close();
                                     <form action="../php/keepTipoActivo.php" method="post">
                                         <div class="mb-3" style="text-align: center;">
                                             <label for="tipoactivo" class="form-label">ID TIPO ACTIVO</label>
-                                            <input type="text" class="form-control" id="tipoactivo" name="tipoactivo">
+                                            <input type="text" class="form-control" id="tipoactivo" name="tipoactivo"
+                                                required>
                                         </div>
                                         <div class="mb-3" style="text-align: center;">
                                             <label for="decripcionactivo" class="form-label">DESCRIPCION</label>
                                             <input type="text" class="form-control" id="decripcionactivo"
-                                                name="decripcionactivo">
+                                                name="decripcionactivo" required>
                                         </div>
                                         <center>
                                             <button type="submit"

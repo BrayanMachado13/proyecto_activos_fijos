@@ -88,7 +88,7 @@ $conexion->close();
 <body>
 
     <?php 
-    include('../pantallas/header_pantallas.php'); 
+    include('headerSolicitudes.php'); 
     ?>
 
     <br>

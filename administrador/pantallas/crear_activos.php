@@ -78,7 +78,8 @@
                                                                     activo</label>
                                                                 <input
                                                                     class="form-control border border-info rounded-2 open-modal-button"
-                                                                    type="text" name="codigo_activo" id="codigo_activo">
+                                                                    type="text" name="codigo_activo" id="codigo_activo"
+                                                                    required>
                                                             </div>
                                                             <div class="mb-3">
                                                                 <div class="form-group">
@@ -86,7 +87,10 @@
                                                                         for="">Nombre del
                                                                         activo</label>
                                                                     <select class=" border border-info rounded-2"
-                                                                        name="nombre_activo" id="nombre_activo">
+                                                                        name="nombre_activo" id="nombre_activo"
+                                                                        required>
+                                                                        <option value="">seleccione un nombre de activo
+                                                                        </option>
                                                                         <?php
                                                                         while ($fila = $resultado_producto->fetch_assoc()) {
                                                                             echo '<option value="' . $fila['id'] . '">' . $fila['nombre_producto'] . '</option>';
@@ -108,7 +112,7 @@
                                                                     <input
                                                                         class="form-control border border-info rounded-2"
                                                                         type="text" name="serial_activo"
-                                                                        id="serial_activo">
+                                                                        id="serial_activo" required>
                                                                 </div>
                                                             </div>
                                                             <div class="mb-3">
@@ -116,7 +120,9 @@
                                                                     <label class="form-label">Tipo de activo </label>
                                                                     <select
                                                                         class="form-select border border-info rounded-2"
-                                                                        name="tipo_activo" id="tipo_activo">
+                                                                        name="tipo_activo" id="tipo_activo" required>
+                                                                        <option value="">seleccione un tipo de activo
+                                                                        </option>
                                                                         <?php
                                                                         while ($fila = $resultado_tipoactivos->fetch_assoc()) {
                                                                             echo '<option value="' . $fila['idtipoactivos'] . '">' . $fila['nombre_tipoactivos'] . '</option>';
@@ -132,7 +138,8 @@
                                                             <div class="form-group">
                                                                 <label class="form-label">Estado?</label>
                                                                 <select class="form-select border border-info rounded-2"
-                                                                    name="estado" id="estado">
+                                                                    name="estado" id="estado" required>
+                                                                    <option value="">seleccione un estado</option>
                                                                     <?php
                                                                         while ($fila = $resultado_estado->fetch_assoc()) {
                                                                             echo '<option value="' . $fila['id'] . '">' . $fila['nombre'] . '</option>';
@@ -146,7 +153,9 @@
                                                                 <label class="form-label">Es Activo fijo o
                                                                     inventario?</label>
                                                                 <select class="form-select border border-info rounded-2"
-                                                                    name="jerarquia_activo" id="jerarquia_activo">
+                                                                    name="jerarquia_activo" id="jerarquia_activo"
+                                                                    required>
+                                                                    <option value="">seleccione una jerarquia</option>
                                                                     <?php
                                                                         while ($fila = $resultado_jerarquiactivo->fetch_assoc()) {
                                                                             echo '<option value="' . $fila['idjerarquiactivo'] . '">' . $fila['nombre_jerarquiactivo'] . '</option>';
@@ -169,7 +178,10 @@
                                                                 <div class="form-group">
                                                                     <label class="form-label">Responsable </label>
                                                                     <select class=" border border-info rounded-2"
-                                                                        name="usuario_activo" id="usuario_activo">
+                                                                        name="usuario_activo" id="usuario_activo"
+                                                                        required>
+                                                                        <option value="">seleccione un responsable
+                                                                        </option>
                                                                         <?php
                                                                         while ($fila = $resultado_usuarios->fetch_assoc()) {
                                                                             echo '<option value="' . $fila['identificacion'] . '">' . $fila['nombre_usuario'] . '</option>';
@@ -192,7 +204,9 @@
                                                                     for="provedor_activo">Selecciona el
                                                                     proveedor</label>
                                                                 <select class=" border border-info rounded-2"
-                                                                    name="provedor_activo" id="provedor_activo">
+                                                                    name="provedor_activo" id="provedor_activo"
+                                                                    required>
+                                                                    <option value="">seleccione un Provedor</option>
                                                                     <?php
                                                                         while ($fila = $resultado_provedor->fetch_assoc()) {
                                                                             echo '<option value="' . $fila['idprovedor'] . '">' . $fila['nombre_provedor'] . '</option>';
@@ -212,7 +226,9 @@
                                                                     for="centrocosto">Centros de
                                                                     costo:</label>
                                                                 <select class=" border border-info rounded-2"
-                                                                    name="centrocosto" id="centrocosto">
+                                                                    name="centrocosto" id="centrocosto" required>
+                                                                    <option value="">Seleccione un centro de costo
+                                                                    </option>
                                                                     <?php
                                                                     while ($fila = $resultado_centrocosto->fetch_assoc()) {
                                                                         echo '<option value="' . $fila['idcentrocosto'] . '">' . $fila['nombre_centrocosto'] . '</option>';
@@ -232,7 +248,7 @@
                                                                     for="destinos">Definir
                                                                     Destino:</label>
                                                                 <select class="form-select border border-info rounded-2"
-                                                                    name="destinos" id="destinos">
+                                                                    name="destinos" id="destinos" required>
 
                                                                 </select>
                                                             </div>
@@ -243,7 +259,7 @@
                                                                     for="ubicaciones">Definir
                                                                     ubicacion:</label>
                                                                 <select class="form-select border border-info rounded-2"
-                                                                    name="ubicaciones" id="ubicaciones">
+                                                                    name="ubicaciones" id="ubicaciones" required>
 
                                                                 </select>
                                                             </div>
@@ -312,7 +328,8 @@
                                                                     for="fecha_compra">Digita fecha de
                                                                     compra</label>
                                                                 <input class="form-control border border-info rounded-2"
-                                                                    type="date" name="fecha_compra" id="fecha_compra">
+                                                                    type="date" name="fecha_compra" id="fecha_compra"
+                                                                    required>
                                                             </div>
                                                         </div>
                                                         <div class="mb-3">
@@ -322,7 +339,7 @@
                                                                     factura</label>
                                                                 <input class="form-control border border-info rounded-2"
                                                                     type="text" name="numero_factura"
-                                                                    id="numero_factura">
+                                                                    id="numero_factura" required>
                                                             </div>
                                                         </div>
                                                         <div class="">
@@ -330,7 +347,8 @@
                                                                 <label class="form-label  " style="display: block"
                                                                     for="precio_activo">Precio</label>
                                                                 <input class="form-control border border-info rounded-2"
-                                                                    type="text" name="precio_activo" id="precio_activo">
+                                                                    type="text" name="precio_activo" id="precio_activo"
+                                                                    required>
                                                             </div>
                                                             <div class="mb-3">
                                                                 <div class="form-group">
@@ -338,7 +356,8 @@
                                                                         for="marca_activo">Marca</label>
                                                                     <select
                                                                         class="form-select border border-info rounded-2"
-                                                                        name="marca_activo" id="marca_activo">
+                                                                        name="marca_activo" id="marca_activo" required>
+                                                                        <option value="">Seleccione una marca</option>
                                                                         <?php
                                                                         while ($fila = $resultado_marca->fetch_assoc()) {
                                                                             echo '<option value="' . $fila['idmarcas'] . '">' . $fila['nombre_marca'] . '</option>';

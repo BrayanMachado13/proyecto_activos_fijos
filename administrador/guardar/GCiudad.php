@@ -9,7 +9,7 @@ $success_msg = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id = $_POST['id'];
     $nombre = $_POST['nombre'];
-    $departamento = $_POST['selectdepartamento'];
+    $departamento = $_POST['selectDepartamento'];
     $estado = $_POST['estado'];
 
     // Verificar si hay un registro con el mismo ID

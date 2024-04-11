@@ -41,7 +41,7 @@ $sql = "SELECT st.id AS id_solicitud, aso.estado, st.fecha_solicitud, st.usuario
     WHERE st.id = $id_solicitud";
 $result = $conexion->query($sql);
 
-$sqli = "SELECT st.fecha_solicitud, st.usuario_destino AS usuario_envio_destino, usu.nombre_usuario AS usuario_origen, usua.nombre_usuario AS usuario_destino
+$sqli = "SELECT st.fecha_solicitud, st.usuario_destino AS usuario_envio_destino, usu.nombres AS usuario_origen, usua.nombres AS usuario_destino
     FROM solicitudes_transferencia st
     LEFT JOIN usuarios usu ON st.usuario_origen = usu.identificacion
     LEFT JOIN usuarios usua ON st.usuario_destino = usua.identificacion

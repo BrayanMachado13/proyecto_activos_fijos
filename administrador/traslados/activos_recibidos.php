@@ -3,7 +3,7 @@
  include_once "../usuarios/nombre_usuarios.php";
 
  $sql = "SELECT pr.nombre_producto AS nombre_producto, ae.estado, et.nombre AS nombre_estado, ae.id_activo, st.id,
- usu.nombre_usuario AS usuario_destino, st.centro_costo, st.destino, ubi.nombre_ubicacion AS nombre_ubicacion_final, 
+ usu.nombres AS usuario_destino, st.centro_costo, st.destino, ubi.nombre_ubicacion AS nombre_ubicacion_final, 
  st.fecha_solicitud, ds.nombre_destino AS nombre_destino_inicial, ub.nombre_ubicacion AS nombre_ubicacion_inicial, 
  af.serial_activo, jr.nombre_jerarquiactivo AS nombre_jerarquiactivo, st.usuario_destino, st.destino, st.ubicacion, jr.idjerarquiactivo, 
  af.fk_idmarcas, af.nombre_producto AS idproducto

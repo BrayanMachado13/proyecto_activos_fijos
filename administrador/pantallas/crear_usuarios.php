@@ -51,26 +51,39 @@
                                         <form action="../guardar/GUsuarios.php" method="post">
                                             <div class="mb-3">
                                                 <label for="id" class="form-label">CEDULA</label>
-                                                <input type="number" class="form-control" id="id" name="id">
+                                                <input type="number" class="form-control" id="id" name="id" required>
                                             </div>
-                                            <div class="mb-3">
-                                                <label for="nombre" class="form-label">NOMBRES Y APELLIDOS</label>
-                                                <input type="text" class="form-control" id="nombre" name="nombre">
+
+
+                                            <div class="mb-3 row">
+                                                <div class="col-md-6">
+                                                    <label for="validationCustom01" class="form-label">NOMBRES</label>
+                                                    <input type="text" class="form-control" id="nombres" name="nombres"
+                                                        required>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="validationCustom02" class="form-label">APELLIDOS</label>
+                                                    <input type="text" class="form-control" id="apellidos"
+                                                        name="apellidos" required>
+                                                </div>
                                             </div>
+
                                             <div class="mb-3">
                                                 <label for="correo" class="form-label">CORREO ELECTRONICO</label>
-                                                <input type="email" class="form-control" id="correo" name="correo">
+                                                <input type="email" class="form-control" id="correo" name="correo"
+                                                    required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="password" class="form-label">CONTRASEÑA</label>
                                                 <input type="password" class="form-control" id="password"
-                                                    name="password">
+                                                    name="password" required>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label for="rol" class="form-label">ROL</label>
                                                 <select class="form-select" aria-label="Default select example"
-                                                    name="rol" id="rol">
+                                                    name="rol" id="rol" required>
+                                                    <option value="">seleccione un rol:</option>
                                                     <?php
                                                     while ($fila = $resultado_roles->fetch_assoc()) {
                                                         echo '<option value="' . $fila['idroles'] . '">' . $fila['nom_rol'] . '</option>';
@@ -81,7 +94,8 @@
                                             <div class="mb-3">
                                                 <label for="zona" class="form-label">ZONA</label>
                                                 <select class="form-select" aria-label="Default select example"
-                                                    name="zona" id="zona">
+                                                    name="zona" id="zona" required>
+                                                    <option value="">seleccione una zona:</option>
                                                     <?php
                                                     while ($fila = $resultado_zona->fetch_assoc()) {
                                                         echo '<option value="' . $fila['idzona'] . '">' . $fila['nombre_zona'] . '</option>';
@@ -93,7 +107,8 @@
                                             <div class="mb-3">
                                                 <label for="estado" class="form-label">ESTADO</label>
                                                 <select class="form-select" aria-label="Default select example"
-                                                    name="estado" id="estado">
+                                                    name="estado" id="estado" required>
+                                                    <option value="">SELECCIONE UN ESTADO:</option>
                                                     <?php
                                                     while ($fila = $resultado_estado->fetch_assoc()) {
                                                         echo '<option value="' . $fila['id'] . '">' . $fila['nombre'] . '</option>';

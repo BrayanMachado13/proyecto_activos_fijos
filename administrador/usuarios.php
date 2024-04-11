@@ -72,14 +72,15 @@ include_once "../database/db.php";
                     <tbody>
                         <tr class="text-dark">
                             <th>IDENTIFICACION</th>
-                            <th>NOMBRE</th>
+                            <th>NOMBRES</th>
+                            <th>APELLIDOS</th>
                             <th>CORREO</th>
                             <th>ROL</th>
                             <th>ZONA</th>
                             <th>ACCIONES</th>
                         </tr>
                         <?php 
-                            $sql="SELECT us.identificacion, us.nombre_usuario, us.usuario, r.nom_rol AS nombre_rol,
+                            $sql="SELECT us.identificacion, us.nombres, us.apellidos, us.usuario, r.nom_rol AS nombre_rol,
                             zn.nombre_zona AS nombre_zona
                             from usuarios us
                             LEFT JOIN rol r ON us.rol = r.idroles
@@ -89,7 +90,8 @@ include_once "../database/db.php";
                             ?>
                         <tr>
                             <td><?php echo $mostrar['identificacion']?></td>
-                            <td><?php echo $mostrar['nombre_usuario']?></td>
+                            <td><?php echo $mostrar['nombres']?></td>
+                            <td><?php echo $mostrar['apellidos']?></td>
                             <td><?php echo $mostrar['usuario']?></td>
                             <td><?php echo $mostrar['nombre_rol']?></td>
                             <td><?php echo $mostrar['nombre_zona']?></td>

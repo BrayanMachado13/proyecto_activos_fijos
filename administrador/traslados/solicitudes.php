@@ -10,8 +10,8 @@
     $sql_ccosto = "SELECT idcentrocosto, nombre_centrocosto FROM centrocosto";
     $resultado_ccosto = $conexion->query($sql_ccosto);
 
-    $sql = "SELECT st.id, st.estado, ett.nombre AS nombre_estado, st.fecha_solicitud, st.usuario_origen, usu.nombre_usuario AS nombre_usuario_origen,
-    usua.nombre_usuario AS nombre_usuario_destino, cc.nombre_centrocosto AS centro_costo, ds.nombre_destino AS destino,
+    $sql = "SELECT st.id, st.estado, ett.nombre AS nombre_estado, st.fecha_solicitud, st.usuario_origen, usu.nombres AS nombre_usuario_origen,
+    usua.nombres AS nombre_usuario_destino, cc.nombre_centrocosto AS centro_costo, ds.nombre_destino AS destino,
     ub.nombre_ubicacion AS ubicacion,
     CONCAT('(', GROUP_CONCAT(acs.id_activo SEPARATOR '), ('), ')') AS activos_enviados 
     FROM solicitudes_transferencia st
@@ -108,7 +108,7 @@
                                             <label class="form-label  " style="display: block" for="centrocosto">Centros
                                                 de costo:</label>
                                             <select id="centrocosto" name="centrocosto" class="form-select"
-                                                aria-label="Default select example">
+                                                aria-label="Default select example" required>
                                                 <option>Seleccione el centro de costo :</option>
                                                 <?php
                                                 while ($fila = $resultado_ccosto->fetch_assoc()) {
@@ -122,7 +122,7 @@
                                         <label class="form-label" style="display: block" for="destinos">Destinos</label>
                                         <div id="destinosdiv">
                                             <select id="destinos" name="destinos" class="form-select"
-                                                aria-label="Default select example">
+                                                aria-label="Default select example" required>
 
 
                                             </select>
@@ -198,7 +198,7 @@
 
                                         <div id="usuariosdiv">
                                             <select id="destinatario" name="destinatario" class="form-select"
-                                                aria-label="Default select example">
+                                                aria-label="Default select example" required>
 
                                             </select>
                                         </div>

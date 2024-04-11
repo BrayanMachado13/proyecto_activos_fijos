@@ -9,10 +9,11 @@ if ($mysqli->connect_error) {
     die("Error de conexión a la base de datos: " . $mysqli->connect_error);
 }
 
-if (isset($_SESSION["usuario"]) && !empty($_SESSION["usuario"]) && !empty($_SESSION["nombre_usuario"]) && !empty($_SESSION["identificacion"])
+if (isset($_SESSION["usuario"]) && !empty($_SESSION["usuario"]) && !empty($_SESSION["nombres"]) && !empty($_SESSION["apellidos"]) && !empty($_SESSION["identificacion"])
 && !empty($_SESSION["fk_idzona"])) {
     $usuario = $_SESSION["usuario"];
-    $n_usuario = $_SESSION["nombre_usuario"];
+    $n_usuario = $_SESSION["nombres"];
+    $apellidos = $_SESSION["apellidos"];
     $identificacion = $_SESSION["identificacion"];
     $zona = $_SESSION["fk_idzona"];
     $rol = obtenerRolUsuario($mysqli);

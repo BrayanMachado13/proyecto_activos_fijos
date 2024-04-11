@@ -120,7 +120,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown"
                         style="font-size: 20px; color: aliceblue;">
-                        <?php echo $n_usuario; ?>
+                        <?php echo $n_usuario; ?> <?php echo $apellidos; ?>
                     </a>
                     <ul class="dropdown-menu">
                         <a class="dropdown-item text-dark " href="viewPerfil.php">Perfil</a>

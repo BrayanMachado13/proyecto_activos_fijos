@@ -41,24 +41,26 @@
                             <h2 class="card-title"></h2>
                             <div class="row">
                                 <div class="col text-dark">
-                                    <h3 class="card-title " style="text-align: center;"> REGISTRAR NUEVO PUNTO DE VENTA
+                                    <h3 class="card-title " style="text-align: center;"> REGISTRAR NUEVO DESTINO
                                     </h3>
-                                    <p class="text-center">A continuación digita los datos del Punto de venta</p>
+                                    <p class="text-center">A continuación digita los datos del Destino</p>
                                     <div class="centrarcard">
                                         <form action="../guardar/GDestinos.php" method="post">
                                             <div class="mb-3">
                                                 <label for="id" class="form-label">CODIGO</label>
-                                                <input type="text" class="form-control" id="id" name="id">
+                                                <input type="text" class="form-control" id="id" name="id" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="nombre" class="form-label">NOMBRE</label>
-                                                <input type="text" class="form-control" id="nombre" name="nombre">
+                                                <input type="text" class="form-control" id="nombre" name="nombre"
+                                                    required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="selectcentrocosto" class="form-label">seleccione el centro
                                                     costo</label>
                                                 <select class="form-select" aria-label="Default select example"
-                                                    name="selectcentrocosto" id="selectcentrocosto">
+                                                    name="selectcentrocosto" id="selectcentrocosto" required>7
+                                                    <option value="">SELECCIONE UN CENTRO DE COSTO</option>
                                                     <?php
                                                     while ($fila = $resultado_centrocosto->fetch_assoc()) {
                                                         echo '<option value="' . $fila['idcentrocosto'] . '">' . $fila['nombre_centrocosto'] . '</option>';
@@ -70,7 +72,8 @@
                                             <div class="mb-3">
                                                 <label for="selectpais" class="form-label">PAIS</label>
                                                 <select id="pais" name="pais" class="form-select"
-                                                    aria-label="Default select example">
+                                                    aria-label="Default select example" required>
+                                                    <option value="">SELECCIONE UN PAIS</option>
                                                     <?php
                                                     while ($fila = $resultado_pais->fetch_assoc()) {
                                                         echo '<option value="' . $fila['id'] . '">' . $fila['nombre_pais'] . '</option>';
@@ -82,7 +85,7 @@
                                             <div class="mb-3">
                                                 <label for="selectdepartamento" class="form-label">DEPARTAMENTO</label>
                                                 <select id="departamento" name="departamento" class="form-select"
-                                                    aria-label="Default select example">
+                                                    aria-label="Default select example" required>
                                                     <!-- Aquí se cargarán los departamentos relacionados con el país seleccionado -->
                                                 </select>
                                             </div>
@@ -90,7 +93,7 @@
                                             <div class="mb-3">
                                                 <label for="selectciudad" class="form-label">CIUDAD</label>
                                                 <select id="ciudades" name="ciudades" class="form-select"
-                                                    aria-label="Default select example">
+                                                    aria-label="Default select example" required>
                                                     <!-- Aquí se cargarán las ciudades relacionadas con el departamento seleccionado -->
                                                 </select>
                                             </div>
@@ -150,12 +153,13 @@
                                             <div class="mb-3">
                                                 <label for="estado" class="form-label">ESTADO</label>
                                                 <select id="estado" name="estado" class="form-select"
-                                                    aria-label="Default select example">
+                                                    aria-label="Default select example" required>
+                                                    <option value="">SELECCIONE UN ESTADO</option>
                                                     <?php
-                                                while ($fila = $resultado_estado->fetch_assoc()) {
-                                                    echo '<option value="' . $fila['id'] . '">' . $fila['nombre'] . '</option>';
-                                                }
-                                                ?>
+                                                    while ($fila = $resultado_estado->fetch_assoc()) {
+                                                        echo '<option value="' . $fila['id'] . '">' . $fila['nombre'] . '</option>';
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
 
@@ -188,10 +192,8 @@
                                 </div>
                             </div>
                             <div class="text-center text-dark">
-                                <form enctype="multipart/form-data" action="../php/importDestinos.php"
-                                    accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token"
-                                        value="g_l8u3DSowJ9ycs-_VWo0YXWHIJVEuhuHhlIX2McUkRf4KD-LsKogBXZOY5S58i92FRNleYR-MvWxf8ot7vigg"
-                                        autocomplete="off">
+                                <form enctype="multipart/form-data" action="../import/importDestinos.php"
+                                    accept-charset="UTF-8" method="post">
                                     <div class="input-group">
                                         <input class="form-control border border-info" accept=".csv" type="file"
                                             name="file" id="file">

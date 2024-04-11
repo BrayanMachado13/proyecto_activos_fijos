@@ -2,7 +2,7 @@
 include_once '../../database/db.php';
 
 // Mensaje de error
-$error_msg = "existe un id el centro de costo no se puede guardar";
+$error_msg = "";
 
 // Verificar si se envió el formulario
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -3,7 +3,7 @@ include_once "usuarios/nombre_usuarios.php";
 include_once "../database/db.php";
 
 
-$sql = "SELECT st.id, usu.nombre_usuario AS nombre_usuario_solicitante, usua.nombre_usuario AS nombre_usuario_destino, 
+$sql = "SELECT st.id, usu.nombres AS nombre_usuario_solicitante, usua.nombres AS nombre_usuario_destino, 
     cc.nombre_centrocosto AS nombre_centrocosto, ds.nombre_destino AS nombre_destino, ub.nombre_ubicacion AS nombre_ubicacion
     FROM solicitudes_transferencia st
     LEFT JOIN usuarios usu ON st.usuario_origen = usu.identificacion

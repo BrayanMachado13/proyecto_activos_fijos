@@ -148,7 +148,7 @@ foreach ($data as $row) {
     // Consultar datos adicionales de la base de datos
     $sql = 'SELECT pr.nombre_producto AS nombre_producto, jr.nombre_jerarquiactivo AS nombre_jerarquia, mr.nombre_marca AS nombre_marca, ac.serial_activo AS serial_activo, 
     cc.nombre_centrocosto AS nombre_centrocosto, ds.nombre_destino AS nombre_destino, ub.nombre_ubicacion AS nombre_ubicacion, ac.activofijo_repuesto, 
-    ac.fk_cedula AS cedula, usu.nombre_usuario AS nombre_usuario
+    ac.fk_cedula AS cedula, usu.nombres AS nombre_usuario
     FROM activos_fijos ac
     LEFT JOIN producto pr ON ac.nombre_producto = pr.id
     LEFT JOIN jerarquiactivo jr ON ac.fk_idjerarquiactivo = jr.idjerarquiactivo
@@ -169,7 +169,7 @@ foreach ($data as $row) {
     ub.nombre_ubicacion AS nombre_ubicacion, 
     inv.activofijo_asociado, 
     inv.fk_cedula AS cedula, 
-    usu.nombre_usuario AS nombre_usuario
+    usu.nombres AS nombre_usuario
     FROM inventarios inv
     LEFT JOIN producto pr ON inv.nombre_producto = pr.id
     LEFT JOIN jerarquiactivo jr ON inv.fk_idjerarquiactivo = jr.idjerarquiactivo

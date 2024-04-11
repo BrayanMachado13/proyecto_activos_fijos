@@ -12,6 +12,7 @@ $result = $conexion->query($sql);
 // Generar opciones para el tercer select
 $options = '';
 if ($result->num_rows > 0) {
+    $options .= "<option value=''>SELECCIONE UNA CIUDAD</option>";
     while ($row = $result->fetch_assoc()) {
         $options .= "<option value='{$row['id']}'>{$row['nombre_ciudad']}</option>";
     }

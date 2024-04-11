@@ -28,6 +28,19 @@ include_once "../database/db.php";
     include('header.php'); 
     ?>
 
+    <?php 
+        if (isset($_GET['error_msg'])) {
+            $error_msg = $_GET['error_msg'];
+            echo '<div class="alert alert-danger" role="alert">' . $error_msg . '</div>';
+        }
+
+        // Mostrar el mensaje de éxito
+        if (isset($_GET['success_msg'])) {
+            $success_msg = $_GET['success_msg'];
+            echo '<div class="alert alert-success" role="alert">' . $success_msg . '</div>';
+        }
+    ?>
+
     <br>
     <div class="container">
         <!-- Stack the columns on mobile by making one full-width and the other half-width -->

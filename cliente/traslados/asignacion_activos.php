@@ -1,23 +1,31 @@
 <?php
- include '../../database/db.php';
+include '../../database/db.php';
+include_once "../usuarios/nombre_usuarios.php";
 
- include_once "../usuarios/nombre_usuarios.php";
+// Obtener el ID de la solicitud de la URL
+$id_solicitud = $_GET['id_solicitud'];
+$nombre_solicitante = $_GET['nombre_solicitante'];
 
-    // Obtener el ID de la solicitud de la URL
-    $id_solicitud = $_GET['id_solicitud'];
-    $nombre_solicitante = $_GET['nombre_solicitante'];
-
-    // Obtener los activos disponibles
-    $sql = "SELECT ac.num_placa_activo, pr.nombre_producto AS nombre_producto, ac.serial_activo, jr.nombre_jerarquiactivo
+// Obtener los activos disponibles
+$sql = "SELECT ac.num_placa_activo, pr.nombre_producto AS nombre_producto, ac.serial_activo, jr.nombre_jerarquiactivo
     FROM activos_fijos ac 
     LEFT JOIN producto pr ON ac.nombre_producto = pr.id
     LEFT JOIN jerarquiactivo jr ON ac.fk_idjerarquiactivo = jr.idjerarquiactivo
     WHERE fk_cedula = $nombre_solicitante ";
-    $resultado = $conexion->query($sql);
-    $activos = $resultado->fetch_all(MYSQLI_ASSOC);
+$resultado = $conexion->query($sql);
+$activos = $resultado->fetch_all(MYSQLI_ASSOC);
 
-    $sql = "SELECT st.id AS id_solicitud, st.fecha_solicitud, st.usuario_origen, st.usuario_destino, st.centro_costo, 
-    dns.nombre_destino AS destino_final, ubi.nombre_ubicacion AS ubicacion_final,
+$sql = "SELECT st.id AS id_solicitud, aso.estado, st.fecha_solicitud, st.usuario_origen, st.usuario_destino, st.centro_costo, 
+    CASE WHEN EXISTS (
+        SELECT 1
+        FROM activos_solicitud aso
+        WHERE aso.id_solicitud = st.id
+    ) THEN dns.nombre_destino ELSE NULL END AS destino_final,
+    CASE WHEN EXISTS (
+        SELECT 1
+        FROM activos_solicitud aso
+        WHERE aso.id_solicitud = st.id
+    ) THEN ubi.nombre_ubicacion ELSE NULL END AS ubicacion_final,
     af.num_placa_activo AS placa_activo, pr.nombre_producto AS nombre_activo, dn.nombre_destino AS destino_inicial, 
     ub.nombre_ubicacion AS ubicacion_inicial,
     est.nombre AS nombre_estado_traslado, aso.fecha_creacion AS fecha_creacion
@@ -25,34 +33,39 @@
     LEFT JOIN activos_solicitud aso ON st.id = aso.id_solicitud
     LEFT JOIN activos_fijos af ON aso.id_activo = af.num_placa_activo
     LEFT JOIN producto pr ON af.nombre_producto = pr.id
-    LEFT JOIN destino dn ON af.fk_desti_id = dn.desti_id
-    LEFT JOIN ubicacion ub ON af.fk_ubica_id = ub.ubica_id
+    LEFT JOIN destino dn ON aso.destino_inicial = dn.desti_id
+    LEFT JOIN ubicacion ub ON aso.ubicacion_inicial = ub.ubica_id
     LEFT JOIN ubicacion ubi ON st.ubicacion = ubi.ubica_id
     LEFT JOIN destino dns ON st.destino = dns.desti_id
     LEFT JOIN estadotraslado est ON aso.estado = est.id
-    WHERE st.id =  $id_solicitud AND aso.estado = 3 ";
-    $result = $conexion->query($sql);
+    WHERE st.id = $id_solicitud";
+$result = $conexion->query($sql);
 
-    $solicitudes = array();
-    if ($result->num_rows > 0) {
-        // Guardar las solicitudes en un array
-        while($row = $result->fetch_assoc()) {
-            $solicitudes[] = $row;
-        }
-    } else {
-        echo "No se encontraron solicitudes para este usuario";
-    }
-
-    $sqli = "SELECT st.fecha_solicitud, st.usuario_destino AS usuario_envio_destino, usu.nombre_usuario AS usuario_origen, usua.nombre_usuario AS usuario_destino
+$sqli = "SELECT st.fecha_solicitud, st.usuario_destino AS usuario_envio_destino, usu.nombres AS usuario_origen, usua.nombres AS usuario_destino
     FROM solicitudes_transferencia st
     LEFT JOIN usuarios usu ON st.usuario_origen = usu.identificacion
     LEFT JOIN usuarios usua ON st.usuario_destino = usua.identificacion
     WHERE st.id =  $id_solicitud";
-    $resultados = $conexion->query($sqli);
-    $solicitudess = $resultados->fetch_assoc();
+$resultados = $conexion->query($sqli);
+$solicitudess = $resultados->fetch_assoc();
 
-    // Cerrar la conexión
-    $conexion->close();
+// Consultar la cantidad de activos pendientes en la solicitud
+$sql_pendientes = "SELECT COUNT(*) AS total_pendientes FROM activos_solicitud WHERE id_solicitud = $id_solicitud AND estado = 3";
+$result_pendientes = $conexion->query($sql_pendientes);
+$row_pendientes = $result_pendientes->fetch_assoc();
+$total_pendientes = $row_pendientes["total_pendientes"];
+
+// Consultar si existen registros de activos para esa solicitud
+$sql_activos = "SELECT COUNT(*) AS total_activos FROM activos_solicitud WHERE id_solicitud = $id_solicitud";
+$result_activos = $conexion->query($sql_activos);
+$row_activos = $result_activos->fetch_assoc();
+$total_activos = $row_activos["total_activos"];
+
+// Mostrar el select si hay activos pendientes o no hay registros de activos
+$mostrar_select = ($total_pendientes > 0 || $total_activos == 0);
+
+// Cerrar la conexión
+$conexion->close();
 
 ?>
 
@@ -73,7 +86,7 @@
 <body>
 
     <?php 
-    include('header.php'); 
+    include('headerSolicitudes.php'); 
     ?>
 
     <br>
@@ -116,11 +129,8 @@
                                 <i>
                                     <ul class="separar d-flex">
                                         <li><a title="Editar" class=" bi bi-pencil-fill btn text-dark" href=""></a></li>
-                                        <li><button class="bi bi-skip-backward-btn-fill text-dark btn">Atrás</button>
-                                        </li>
-                                        <li><a title="ir a todas las solicitudes" class="fa-solid fa-window-restore btn"
-                                                href="" aria-hidden="true"></a><span class="sr-only">ir a
-                                                todas las solicitudes</span></li>
+                                        <li><a title="Atras" class="bi bi-skip-backward-btn-fill text-dark btn"
+                                                href="solicitudes.php">Atras</a></li>
                                     </ul>
                                 </i>
                             </div>
@@ -132,21 +142,24 @@
     </div>
 
     <div class="container tam-card-personal">
+
         <div class="container form-control bg-card-personal">
-            <form action="procesos/enviar_activos.php" accept-charset="UTF-8" method="post"><input type="hidden"
-                    name="authenticity_token"
-                    value="DiJKhaslQGdn7Q504463xxm26_XKA-Q5KtdvRRHakcAPfJDhqH3slYWPH2o2LqHH0nzI7R306FYBSgSXsdFruw"
-                    autocomplete="off">
+            <?php if ($mostrar_select) : ?>
+            <form action="procesos/enviar_activos.php" accept-charset="UTF-8" method="post">
                 <input type='hidden' name='id_solicitud'
                     value='<?php echo isset($id_solicitud) ? $id_solicitud : ""; ?>'>
                 <input type='hidden' name='id_usuario_destino'
                     value='<?php echo $solicitudess["usuario_envio_destino"]; ?>'>
+
+
                 <div class="container">
                     <div class="col">
                         <label class="form-label">Activo fijo a trasladar</label>
 
+
                         <select name='activo' class="form-select" aria-label="Default select example">
                             <option value="" label=" "></option>
+
 
                             <?php foreach ($activos as $activo): ?>
                             <option value="<?php echo $activo['num_placa_activo']; ?>">
@@ -158,7 +171,6 @@
 
                         </select>
 
-
                         <div class="separar d-flex">
                             <button name="button" type="submit" title="Inicia el traslado del activo"
                                 class=" boton fourth mt-5">
@@ -169,14 +181,14 @@
                     </div>
                 </div>
             </form>
-            <br>
-            <br>
+            <?php endif; ?>
             <div class="row">
                 <div class="col-md-8">
                     <div id="accepteds">
                     </div>
                     <div class="container">
                     </div>
+                    <?php if ($result->num_rows > 0): ?>
                     <table class="bigtables table  table-striped table-hover">
                         <tbody>
                             <tr class="text-dark bigtable">
@@ -192,32 +204,39 @@
                             </tr>
                         </tbody>
                         <tbody class="bigtable">
-                            <?php foreach ($solicitudes as $solicituds): ?>
+                            <?php while($row = $result->fetch_assoc()): ?>
                             <tr>
-                                <td><?php echo $solicituds["fecha_creacion"]; ?></td>
-                                <td><?php echo $solicituds["placa_activo"]; ?></td>
-                                <td><?php echo $solicituds["nombre_activo"]; ?></td>
-                                <td><?php echo $solicituds["destino_inicial"]; ?></td>
-                                <td><?php echo $solicituds["ubicacion_inicial"]; ?></td>
-                                <td><?php echo $solicituds["destino_final"]; ?></td>
-                                <td><?php echo $solicituds["ubicacion_final"]; ?></td>
-                                <td><?php echo $solicituds["nombre_estado_traslado"]; ?></td>
+                                <td><?php echo $row["fecha_creacion"]; ?></td>
+                                <td><?php echo $row["placa_activo"]; ?></td>
+                                <td><?php echo $row["nombre_activo"]; ?></td>
+                                <td><?php echo $row["destino_inicial"]; ?></td>
+                                <td><?php echo $row["ubicacion_inicial"]; ?></td>
+                                <td><?php echo $row["destino_final"]; ?></td>
+                                <td><?php echo $row["ubicacion_final"]; ?></td>
+                                <td><?php echo $row["nombre_estado_traslado"]; ?></td>
 
                                 <td>
+                                    <?php if ($row["destino_final"] != null && $row["ubicacion_final"] != null): ?>
                                     <div class="d-flex">
                                         <a class="bi bi-eye-fill btn text-dark" href=""></a>
+                                        <?php if ($row["estado"] != 1 && $row["estado"] != 2): ?>
                                         <form class="button_to" method="post" action=""><input type="hidden"
                                                 name="_method" value="delete" autocomplete="off"><button
                                                 title="cancelar" class="bi bi-cart-x-fill btn text-dark"
                                                 type="submit"></button><input type="hidden" name="authenticity_token"
                                                 value="SLF6i9DLi9SaWg-5W7aavnxn08XuctIlYTYpHwiMW4SaUyZKDrLnXN-T52SmE2iQDhvxSlyw06glM46__WokyQ"
                                                 autocomplete="off"></form>
+                                        <?php endif; ?>
                                     </div>
+                                    <?php endif; ?>
                                 </td>
                             </tr>
-                            <?php endforeach; ?>
+                            <?php endwhile; ?>
                         </tbody>
                     </table>
+                    <?php else: ?>
+                    <p>No se encontraron activos enviados para esta solicitud.</p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

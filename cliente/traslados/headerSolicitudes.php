@@ -12,7 +12,7 @@
 <body>
     <nav class=" sep navbar navbar-expand-sm bg-rednav navbar">
         <div class="container-fluid">
-            <a class="navbar-brand" href="../principal_regular.php">
+            <a class="navbar-brand" href="principal_regular.php">
                 <img class="" width="50px" src="../../complemento/imagen/logorecord.png">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar"
@@ -35,10 +35,12 @@
                                 <a class="dropdown-item text-dark" href="mis_activos.php">Mis activos</a>
                             </li>
                             <li>
-                                <a class="dropdown-item text-dark" href="solicitudes.php">Hacer solicitudes</a>
+                                <a class="dropdown-item text-dark" href="solicitudes.php">Hacer
+                                    solicitudes</a>
                             </li>
                             <li>
-                                <a class="dropdown-item text-dark" href="activos_recibidos.php">Recibir activos</a>
+                                <a class="dropdown-item text-dark" href="activos_recibidos.php">Recibir
+                                    activos</a>
                             </li>
                         </ul>
                     </li>
@@ -48,7 +50,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown"
                         style="font-size: 20px; color: aliceblue;">
-                        <?php echo $n_usuario; ?>
+                        <?php echo $n_usuario; ?> <?php echo $apellidos; ?>
                     </a>
                     <ul class="dropdown-menu">
                         <a class="dropdown-item text-dark " href="viewPerfilRegular.php">Perfil</a>

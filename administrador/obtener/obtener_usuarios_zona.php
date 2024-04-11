@@ -19,7 +19,7 @@ if (isset($_POST['idcentrocosto'])) {
     
         // Generar opciones para el segundo select
         $options = '';
-        
+        $options .= "<option value=''>SELECCIONE UN RESPONSABLE</option>";
             while ($row = $resultado_usuarios->fetch_assoc()) {
                 $options .= "<option value='{$row['identificacion']}'>{$row['nombre_usuario']}</option>";
             }

@@ -47,32 +47,35 @@
                                         <form action="../guardar/GCiudad.php" method="post">
                                             <div class="mb-3">
                                                 <label for="id" class="form-label">ID</label>
-                                                <input type="text" class="form-control" id="id" name="id">
+                                                <input type="text" class="form-control" id="id" name="id" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="nombre" class="form-label">NOMBRE</label>
-                                                <input type="text" class="form-control" id="nombre" name="nombre">
+                                                <input type="text" class="form-control" id="nombre" name="nombre"
+                                                    required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="selectDepartamento" class="form-label">DEPARTAMENTO</label>
                                                 <select class="form-select" aria-label="Default select example"
-                                                    name="selectDepartamento" id="selectDepartamento">
+                                                    name="selectDepartamento" id="selectDepartamento" required>
+                                                    <option value="">SELECCIONE UN DEPARTAMENTO</option>
                                                     <?php
-                                while ($fila = $resultado_departamento->fetch_assoc()) {
-                                    echo '<option value="' . $fila['id'] . '">' . $fila['nombre_departamento'] . '</option>';
-                                }
-                                ?>
+                                                        while ($fila = $resultado_departamento->fetch_assoc()) {
+                                                            echo '<option value="' . $fila['id'] . '">' . $fila['nombre_departamento'] . '</option>';
+                                                        }
+                                                        ?>
                                                 </select>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="estado" class="form-label">ESTADO</label>
                                                 <select id="estado" name="estado" class="form-select"
-                                                    aria-label="Default select example">
+                                                    aria-label="Default select example" required>
+                                                    <option value="">SELECCIONE UN ESTADO</option>
                                                     <?php
-                                    while ($fila = $resultado_estado->fetch_assoc()) {
-                                        echo '<option value="' . $fila['id'] . '">' . $fila['nombre'] . '</option>';
-                                    }
-                                    ?>
+                                                    while ($fila = $resultado_estado->fetch_assoc()) {
+                                                        echo '<option value="' . $fila['id'] . '">' . $fila['nombre'] . '</option>';
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
 

@@ -11,6 +11,7 @@ $result = $conexion->query($sql);
 // Generar opciones para el segundo select
 $options = '';
 if ($result->num_rows > 0) {
+    $options .= "<option value=''>seleccione un destino</option>";
     while ($row = $result->fetch_assoc()) {
         $options .= "<option value='{$row['desti_id']}'>{$row['nombre_destino']}</option>";
     }

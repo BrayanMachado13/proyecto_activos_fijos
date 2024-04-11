@@ -42,16 +42,18 @@
                                         <form action="../guardar/GProveedor.php" method="post">
                                             <div class="mb-3">
                                                 <label for="id" class="form-label">NIT</label>
-                                                <input type="text" class="form-control" id="id" name="id">
+                                                <input type="text" class="form-control" id="id" name="id" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="nombre" class="form-label">NOMBRE</label>
-                                                <input type="text" class="form-control" id="nombre" name="nombre">
+                                                <input type="text" class="form-control" id="nombre" name="nombre"
+                                                    required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="estado" class="form-label">ESTADO</label>
                                                 <select class="form-select" aria-label="Default select example"
-                                                    name="estado" id="estado">
+                                                    name="estado" id="estado" required>
+                                                    <option value="">SELECCIONE UN ESTADO:</option>
                                                     <?php
                                                     while ($fila = $resultado_estado->fetch_assoc()) {
                                                         echo '<option value="' . $fila['id'] . '">' . $fila['nombre'] . '</option>';
