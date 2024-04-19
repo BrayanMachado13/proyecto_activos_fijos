@@ -1,40 +1,16 @@
-<?php
-include_once "usuarios/nombre_usuarios.php";
-include_once "../database/db.php";
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/activos.css">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     <title>Document</title>
 </head>
 
 <body>
 
-    <?php 
-    include('header.php'); 
-    ?>
-
-    <?php 
-        if (isset($_GET['error_msg'])) {
-            $error_msg = $_GET['error_msg'];
-            echo '<div class="alert alert-danger" role="alert">' . $error_msg . '</div>';
-        }
-
-        // Mostrar el mensaje de éxito
-        if (isset($_GET['success_msg'])) {
-            $success_msg = $_GET['success_msg'];
-            echo '<div class="alert alert-success" role="alert">' . $success_msg . '</div>';
-        }
-    ?>
-
-    <br>
+    <br><br>
     <div class="container">
         <!-- Stack the columns on mobile by making one full-width and the other half-width -->
         <nav class="navbar navsep navbar-expand-sm navbar-rednav bg-rednav rounded">
@@ -43,15 +19,12 @@ include_once "../database/db.php";
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <i>
-                                <a class="nav-item nav-link bi bi-plus-square-dotted" href="pantallas/crear_pais.php">
-                                    Nuevo pais</a>
+                                <a class="nav-item nav-link bi bi-plus-square-dotted"></a>
                             </i>
                         </li>
                     </ul>
                     <form class="d-flex">
-
-
-                        <input placeholder="Busca la zona acá" onchange="this.form.requestSubmit()" type="text"
+                        <input placeholder="Busca el departamento acá" onchange="this.form.requestSubmit()" type="text"
                             name="search" id="search">
                         <button class="btn btn-secondary" type="button">Buscar</button>
                     </form>
@@ -61,9 +34,11 @@ include_once "../database/db.php";
 
         <div class="row">
             <div class="col-md-8">
-                <div class="tzona">
-                    <h3>PAISES</h3>
-                </div>
+                <center>
+                    <div class="tzona">
+                        <h3>DEPARTAMENTOS</h3>
+                    </div>
+                </center>
                 <div id="pais">
                 </div>
                 <table class="bigtables table  table-striped table-hover ">
@@ -71,11 +46,13 @@ include_once "../database/db.php";
                         <tr class="text-dark">
                             <th>CÓDIGO</th>
                             <th>NOMBRE</th>
+                            <th>PAIS</th>
+                            <th>ESTADO</th>
                             <th>ACCIONES</th>
                         </tr>
 
                         <?php 
-                        include_once 'busquedas/buscarPais.php';
+                        include_once ('busquedas/buscarInhabilitadoDepartamento.php');
                         ?>
 
                         <?php 
@@ -83,21 +60,11 @@ include_once "../database/db.php";
                         ?>
                         <tr>
                             <td><?php echo $mostrar['id']?></td>
+                            <td><?php echo $mostrar['nombre_departamento']?></td>
                             <td><?php echo $mostrar['nombre_pais']?></td>
+                            <td><?php echo $mostrar['estado']?></td>
                             <td>
                                 <i class="separar">
-                                    <form class="button_to" method="post" action="botones/inhabilitarPais.php"
-                                        onsubmit="return confirm('¿Estás seguro de que quieres eliminar este pais?');">
-                                        <input type="hidden" name="id" value="<?php echo $mostrar['id']?>"
-                                            autocomplete="off">
-                                        <button class="bi bi-trash  text-dark btn" name="eliminar" type="submit">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
-                                            </svg>
-                                        </button>
-                                    </form>
                                     <a title="Editar" class=" bi bi-pencil-fill  text-dark btn" href="">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
@@ -120,7 +87,7 @@ include_once "../database/db.php";
         <ul class="pagination justify-content-center mt-2">
             <?php 
             include_once 'paginacion/paginacion.php';
-            ?>
+        ?>
         </ul>
     </nav>
 </body>

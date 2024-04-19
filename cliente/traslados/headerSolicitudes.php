@@ -54,10 +54,8 @@
                     </a>
                     <ul class="dropdown-menu">
                         <a class="dropdown-item text-dark " href="viewPerfilRegular.php">Perfil</a>
-                        <button class="dropdown-item text-dark " onclick="cerrarSesion()">cerrar sesion</a>
-
+                        <a class="dropdown-item text-dark " href="../../cerrar_sesion.php">cerrar sesion</a>
                     </ul>
-                    <script src="../cerrar_sesion.js"></script>
                 </li>
             </ul>
         </div>

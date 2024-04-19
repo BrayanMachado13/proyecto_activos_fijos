@@ -1,11 +1,11 @@
 <?php 
                         
-    include_once '../database/db.php';
+    include_once "../database/db.php";
 
     // Calcula el número total de resultados sin límite de paginación
-    $totalResultsSql = "SELECT COUNT(*) as total FROM centrocosto";
+    $totalResultsSql = "SELECT COUNT(*) as total FROM departamento";
     if (!empty($search)) {
-        $totalResultsSql .= " WHERE nombre_centrocosto LIKE '%$search%'";
+        $totalResultsSql .= " WHERE nombre_departamento LIKE '%$search%'";
     }
 
     $totalResultQuery = ejecutarConsulta($conexion, $totalResultsSql);
@@ -14,8 +14,8 @@
                         
     // Función para ejecutar una consulta SQL y obtener los resultados
     function ejecutarConsulta($conexion, $sql) {
-    $result = $conexion->query($sql);
-     return $result;
+        $result = $conexion->query($sql);
+        return $result;
     }
                         
     // Inicializa variables
@@ -28,23 +28,22 @@
     }
                         
     if (isset($_GET['page'])) {
-    $page = $_GET['page'];
+        $page = $_GET['page'];
     }
                         
     // Construye la consulta SQL para la búsqueda
-    $sql = "SELECT cc.idcentrocosto, cc.nombre_centrocosto, cc.fk_idzona, pa.nombre_pais AS nombre_pais, dp.nombre_departamento AS nombre_departamento, ci.nombre_ciudad AS nombre_ciudad
-        FROM centrocosto cc
-        LEFT JOIN pais pa ON cc.fk_pais = pa.id
-        LEFT JOIN departamento dp ON cc.fk_departamento = dp.id
-        LEFT JOIN ciudad ci ON cc.fk_ciudad = ci.id
-        WHERE cc.estado = 1";
+    $sql = "SELECT dp.id, dp.nombre_departamento, es.nombre AS estado, pa.nombre_pais AS nombre_pais
+    FROM departamento dp
+    LEFT JOIN estado es ON dp.estado = es.id
+    LEFT JOIN pais pa ON dp.id_pais = pa.id 
+    WHERE dp.estado = 2 ";
                         
     if (!empty($search)) {
-        $sql .= " AND cc.nombre_centrocosto LIKE '%$search%'";
+        $sql .= " AND nombre_departamento LIKE '%$search%'";
     }
                         
     $offset = ($page - 1) * $resultsPerPage;
-    $sql .= " LIMIT $offset, $resultsPerPage";
+    $sql .= "LIMIT $offset, $resultsPerPage";
                         
     $result = ejecutarConsulta($conexion, $sql);
-    ?>
+?>

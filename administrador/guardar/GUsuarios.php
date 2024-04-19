@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($result->num_rows > 0) {
         $error_msg = "Ya existe un usuario con la misma cedula. No se puede guardar.";
     } else {
-        // Insertar los datos en la base de datos
+        // Insertar los datos en la base de datos con la ruta de la imagen
         $sql = "INSERT INTO usuarios (identificacion, nombres, apellidos, usuario, password, rol, fk_idzona, estado) VALUES ($id, '$nombres', '$apellidos', '$correo', '$contraseña', '$rol', '$zona', '$estado')";
         if ($conexion->query($sql) === TRUE) {
             $success_msg = "USUARIO guardado correctamente.";

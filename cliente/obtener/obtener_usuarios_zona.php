@@ -13,7 +13,7 @@ if (isset($_POST['idcentrocosto'])) {
         $idzona = $fila['fk_idzona'];
 
         // Obtener los usuarios de la zona
-        $sql_usuarios = "SELECT identificacion, nombre_usuario FROM usuarios WHERE fk_idzona = $idzona";
+        $sql_usuarios = "SELECT identificacion, nombres FROM usuarios WHERE fk_idzona = $idzona";
         $resultado_usuarios = $conexion->query($sql_usuarios);
 
     
@@ -21,7 +21,7 @@ if (isset($_POST['idcentrocosto'])) {
         $options = '';
         
             while ($row = $resultado_usuarios->fetch_assoc()) {
-                $options .= "<option value='{$row['identificacion']}'>{$row['nombre_usuario']}</option>";
+                $options .= "<option value='{$row['identificacion']}'>{$row['nombres']}</option>";
             }
         
 

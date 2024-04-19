@@ -145,9 +145,9 @@ include_once "../database/db.php";
 
                                             <a class="bi bi-eye-fill text-dark btn"
                                                 href="visualizacion/visualizarActivo.php?id=<?php echo $mostrar['activo_fijo']?>"></a>
-                                            <form class="button_to" method="post" action=""><input type="hidden"
-                                                    name="_method" value="patch" autocomplete="off"><button
-                                                    title="Dar de baja" class="text-dark bi bi-arrow-down btn"
+                                            <form class="button_to" method="post" action="">
+                                                <input type="hidden" name="_method" value="patch" autocomplete="off">
+                                                <button title="Dar de baja" class="text-dark bi bi-arrow-down btn"
                                                     type="submit"></button>
                                             </form>
                                             <a title="Editar" class=" bi bi-pencil-fill text-dark btn"
@@ -160,6 +160,14 @@ include_once "../database/db.php";
                                 ?>
                             </tbody>
                         </table>
+                        <script>
+                        function confirmarEliminar(id) {
+                            if (confirm('¿Estás seguro de que quieres eliminar este registro?')) {
+                                return true; // Continuar con la eliminación
+                            }
+                            return false; // Cancelar la eliminación
+                        }
+                        </script>
                 </div>
             </div>
 

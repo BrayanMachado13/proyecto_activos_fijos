@@ -34,10 +34,11 @@
     // Construye la consulta SQL para la búsqueda
     $sql = "SELECT dp.id, dp.nombre_departamento, pa.nombre_pais AS nombre_pais
     FROM departamento dp
-    LEFT JOIN pais pa ON dp.id_pais = pa.id";
+    LEFT JOIN pais pa ON dp.id_pais = pa.id
+    WHERE dp.estado = 1";
                         
     if (!empty($search)) {
-        $sql .= " WHERE dp.nombre_departamento LIKE '%$search%'";
+        $sql .= " AND dp.nombre_departamento LIKE '%$search%'";
     }
                         
     $offset = ($page - 1) * $resultsPerPage;

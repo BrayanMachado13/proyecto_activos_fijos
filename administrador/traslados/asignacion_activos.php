@@ -15,7 +15,7 @@ $sql = "SELECT ac.num_placa_activo, pr.nombre_producto AS nombre_producto, ac.se
 $resultado = $conexion->query($sql);
 $activos = $resultado->fetch_all(MYSQLI_ASSOC);
 
-$sql = "SELECT st.id AS id_solicitud, aso.estado, st.fecha_solicitud, st.usuario_origen, st.usuario_destino, st.centro_costo, 
+$sql = "SELECT st.id AS id_solicitud, aso.id AS id_activos_solicitud , aso.estado, st.fecha_solicitud, st.usuario_origen, st.usuario_destino, st.centro_costo, 
     CASE WHEN EXISTS (
         SELECT 1
         FROM activos_solicitud aso
@@ -223,12 +223,14 @@ $conexion->close();
                                     <div class="d-flex">
                                         <a class="bi bi-eye-fill btn text-dark" href=""></a>
                                         <?php if ($row["estado"] != 1 && $row["estado"] != 2): ?>
-                                        <form class="button_to" method="post" action=""><input type="hidden"
-                                                name="_method" value="delete" autocomplete="off"><button
-                                                title="cancelar" class="bi bi-cart-x-fill btn text-dark"
-                                                type="submit"></button><input type="hidden" name="authenticity_token"
-                                                value="SLF6i9DLi9SaWg-5W7aavnxn08XuctIlYTYpHwiMW4SaUyZKDrLnXN-T52SmE2iQDhvxSlyw06glM46__WokyQ"
-                                                autocomplete="off"></form>
+                                        <form class="button_to" method="post"
+                                            action="../botones/eliminarAsignacionActivos.php">
+                                            <input type="hidden" name="id"
+                                                value="<?php echo $row["id_activos_solicitud"] ?>" autocomplete="off">
+                                            <button title="cancelar" name="eliminar"
+                                                class="bi bi-cart-x-fill btn text-dark" type="submit">
+                                            </button>
+                                        </form>
                                         <?php endif; ?>
                                     </div>
                                     <?php endif; ?>

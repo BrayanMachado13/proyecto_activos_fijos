@@ -85,6 +85,9 @@
                             <li>
                                 <a class="dropdown-item text-dark " href="marcas.php">Ir a Marcas</a>
                             </li>
+                            <li>
+                                <a class="dropdown-item text-dark " href="inhabilitados.php">Ir a inhabilitados</a>
+                            </li>
                         </ul>
                     </li>
                 </ul>

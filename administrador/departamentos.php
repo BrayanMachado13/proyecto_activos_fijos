@@ -90,16 +90,17 @@ include_once "../database/db.php";
                             <td><?php echo $mostrar['nombre_pais']?></td>
                             <td>
                                 <i class="separar">
-                                    <form class="button_to" method="post" action=""><input type="hidden" name="_method"
-                                            value="delete" autocomplete="off"><button class="bi bi-trash  text-dark btn"
-                                            data-turbo-confirm="Estás seguro?" type="submit"><svg
-                                                xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    <form class="button_to" method="post" action="botones/inhabilitarDepartamento.php"
+                                        onsubmit="return confirm('¿Estás seguro de que quieres eliminar este departamento?');">
+                                        <input type="hidden" name="id" value="<?php echo $mostrar['id']?>">
+                                        <button class="bi bi-trash  text-dark btn" name="eliminar" type="submit">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                                 <path
                                                     d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
-                                            </svg></button><input type="hidden" name="authenticity_token"
-                                            value="M4R3-guNhkMZXdAi4oYx16iTq3_MXZ-KTFxZ0ecU7CvtMNRFJ3Lc8gRze_Gy3zZTwWaRIRGgIv8eOflpIS_i6w"
-                                            autocomplete="off"></form>
+                                            </svg>
+                                        </button>
+                                    </form>
                                     <a title="Editar" class=" bi bi-pencil-fill  text-dark btn" href=""><svg
                                             xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">

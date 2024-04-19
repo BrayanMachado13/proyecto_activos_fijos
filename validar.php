@@ -16,7 +16,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $resultado = mysqli_query($mysqli, $sql);
 
 
-    $sql = "SELECT * FROM usuarios WHERE usuario = '$usuario' AND password = '$contrasena'";
+    $sql = "SELECT SUBSTRING_INDEX(nombres, ' ', 1) AS nombres, SUBSTRING_INDEX(apellidos, ' ', 1) AS apellidos,usuario,rol,identificacion,fk_idzona
+    FROM usuarios WHERE usuario = '$usuario' AND password = '$contrasena'
+    LIMIT 1";
     $result = $mysqli->query($sql);
 
     if ($result->num_rows == 1) {
@@ -24,7 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
 
         // Inicia la sesión y almacena información relevante
-        $_SESSION['idpersona'] = $row['idpersona'];
         $_SESSION['usuario'] = $row['usuario'];
         $_SESSION['rol'] = $row['rol'];
         $_SESSION['nombres'] = $row['nombres'];

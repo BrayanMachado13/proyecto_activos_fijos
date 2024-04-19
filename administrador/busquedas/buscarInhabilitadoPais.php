@@ -8,12 +8,12 @@
         $totalResultsSql .= " WHERE nombre_pais LIKE '%$search%'";
     }
 
-    $totalResultQuery = ejecutarConsulta($conexion, $totalResultsSql);
+    $totalResultQuery = ejecutarConsultas($conexion, $totalResultsSql);
     $totalResultRow = mysqli_fetch_assoc($totalResultQuery);
     $totalResults = $totalResultRow['total'];
                         
     // Función para ejecutar una consulta SQL y obtener los resultados
-    function ejecutarConsulta($conexion, $sql) {
+    function ejecutarConsultas($conexion, $sql) {
         $result = $conexion->query($sql);
         return $result;
     }
@@ -32,7 +32,10 @@
     }
                         
     // Construye la consulta SQL para la búsqueda
-    $sql = "SELECT * FROM pais where estado = 1";
+    $sql = "SELECT pa.id, pa.nombre_pais, es.nombre AS estado
+    FROM pais pa
+    LEFT JOIN estado es ON pa.estado = es.id 
+    where estado = 2";
                         
     if (!empty($search)) {
     $sql .= " AND nombre_pais LIKE '%$search%'";
@@ -41,5 +44,5 @@
     $offset = ($page - 1) * $resultsPerPage;
     $sql .= " LIMIT $offset, $resultsPerPage";
                         
-    $result = ejecutarConsulta($conexion, $sql);
+    $result = ejecutarConsultas($conexion, $sql);
 ?>

@@ -4,7 +4,7 @@
  $sql_centrocosto = "SELECT idcentrocosto, nombre_centrocosto FROM centrocosto";
  $resultado_centrocosto = $conexion->query($sql_centrocosto);
 
- $sql_usuarios = "SELECT identificacion, nombre_usuario FROM usuarios";
+ $sql_usuarios = "SELECT identificacion, nombres FROM usuarios";
  $resultado_usuarios = $conexion->query($sql_usuarios);
 
  $sql_tipoactivos = "SELECT idtipoactivos, nombre_tipoactivos FROM tipoactivos";
@@ -176,7 +176,8 @@
                                                             </div>
                                                             <div class="mb-3">
                                                                 <div class="form-group">
-                                                                    <label class="form-label">Responsable </label>
+                                                                    <label class="form-label"
+                                                                        style="display: block">Responsable </label>
                                                                     <select class=" border border-info rounded-2"
                                                                         name="usuario_activo" id="usuario_activo"
                                                                         required>
@@ -184,7 +185,7 @@
                                                                         </option>
                                                                         <?php
                                                                         while ($fila = $resultado_usuarios->fetch_assoc()) {
-                                                                            echo '<option value="' . $fila['identificacion'] . '">' . $fila['nombre_usuario'] . '</option>';
+                                                                            echo '<option value="' . $fila['identificacion'] . '">' . $fila['nombres'] . '</option>';
                                                                         }
                                                                         ?>
                                                                     </select>
